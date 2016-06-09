@@ -1,0 +1,89 @@
+﻿@model ASP.NET.Homework1.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+
+        @if (ViewBag.Count > 0)
+        { 
+        <h4 style="display: @show()">Invalid username or password (Number of tries: @ViewBag.Count)</h4>
+        }
+        @if (ViewBag.Count > 4 && LogTime() > 0)
+        {
+            <h4>Login is temporarly disabled. Please try after @LogTime() minutes</h4>
+        }
+
+            
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="username" @Disabled() />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="password" class="form-control" name="password" @Disabled() />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default"  @Disabled() @Log() />
+            </div>
+        </div>
+    </div>
+}
+
+@functions{
+
+    public string show()
+    {
+        if (ViewBag.Count == 5)
+        {
+            return "none";
+        }
+        return "";
+    }
+
+    public string Disabled()
+    {
+        if (ViewBag.Count == 5 && LogTime() > 0)
+        {
+            return "disabled";
+        }
+        
+        return "";
+    }
+
+    public string Log()
+    {
+        if (((ViewBag.Log + 30) - DateTime.Now.Minute) <= 0)
+        {
+            return "enabled";    
+        }
+
+        return "";
+    }
+
+    public int LogTime()
+    {
+        int str = (ViewBag.Log + 30) - DateTime.Now.Minute;
+        
+        
+        return str;
+    }
+}

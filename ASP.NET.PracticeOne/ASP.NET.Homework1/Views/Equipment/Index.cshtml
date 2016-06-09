@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ASP.NET.Homework1.Models.Equipment>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<form method="get" action="~/Equipment/Index" class="navbar-form navbar-left">
+    <div class="form-group">
+        <input type="text" class="form-control" name="query" placeholder="Search equipment">
+    </div>
+    <button type="submit" class="btn btn-default">Filter</button>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedTo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+           @Optimize(item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedTo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+</table>
+
+@{
+    var distinct = (List<string>)ViewData["Distinct"];
+}
+
+
+@if (Request.QueryString["query"] == null || Request.QueryString["query"] == "")
+{
+
+    
+<span style="display:@Assigness()">Assignees:</span>
+    for (int i = 0; i < distinct.Count; i++)
+    {
+        <form method="get" action="~/Equipment/Index" style="display:inline">
+            <button class="btn" style="background-color: @Colorize()" name="query" value="@distinct[i]">@distinct[i]</button>
+    </form>
+    }
+}
+
+@if (Request.QueryString["query"] != null || Request.QueryString["query"] != "")
+{ 
+foreach (var item in Model) 
+{
+    if (Request.QueryString["query"] != null && item.AssignedTo.ToLower() == Request.QueryString["query"].ToLower())
+    {
+        <span>Filtered By:</span>
+        <button class="btn" style="background-color: @Colorize()">@item.AssignedTo</button>
+        @Html.ActionLink("(Reset)", "Index");
+    break;
+    }
+    
+    // if is searched by search form
+    if (Request.QueryString["query"] != null && Request.QueryString["query"] != "")
+    {
+        @Html.ActionLink("<-- Back to List", "Index");
+    break;
+    }
+}
+}
+
+@functions{
+
+    Random number = new Random();
+
+    public string Colorize()
+    {
+        string num = "#48b" + number.Next(0, 613);
+
+        return num;
+    }
+
+    public string Optimize(string desc)
+    {
+        return desc.Count() > 20 ? desc.Substring(0, 20) + "..." : desc;
+    }
+
+    public string Assigness()
+    {
+        if (ViewBag.Assigness == 0)
+        {
+            return "none";
+        }
+        return "";
+    }
+}
