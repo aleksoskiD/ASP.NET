@@ -1,0 +1,14 @@
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Repository.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Repository.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Domain.Entities.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Domain.Interfaces.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Domain.Entities.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Domain.Interfaces.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\obj\Debug\Repository.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\obj\Debug\Repository.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\Repository.dll.config
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.xml
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.xml

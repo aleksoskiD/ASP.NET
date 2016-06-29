@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Domain.Entities.Task>
+
+@{
+    ViewBag.Title = "UserTask";
+}
+
+<h2>Tasks for <span style="color: blue">@ViewBag.UserEmail</span></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { email = ViewBag.UserEmail })
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2 style="font-weight:bold; color:ThreeDDarkShadow">To Do</h2>
+            @foreach (var item in Model)
+            {
+                if (item.Status.ToString().Equals("ToDo"))
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h4 style="font-weight:800">@item.Name</h4>
+                                    <h4>@item.Type</h4>
+                                    <h4>@item.Status</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-3">
+            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Progress</h2>
+            @foreach (var item in Model)
+            {
+                if (item.Status.ToString().Equals("InProgress"))
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h4 style="font-weight:800">@item.Name</h4>
+                                    <h4>@item.Type</h4>
+                                    <h4>@item.Status</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-3">
+            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Testing</h2>
+            @foreach (var item in Model)
+            {
+                if (item.Status.ToString().Equals("InTesting"))
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h4 style="font-weight:800">@item.Name</h4>
+                                    <h4>@item.Type</h4>
+                                    <h4>@item.Status</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-3">
+            <h2 style="font-weight:bold; color:ThreeDDarkShadow">Done</h2>
+            @foreach (var item in Model)
+            {
+                if (item.Status.ToString().Equals("Done"))
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h4 style="font-weight:800">@item.Name</h4>
+                                    <h4>@item.Type</h4>
+                                    <h4>@item.Status</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

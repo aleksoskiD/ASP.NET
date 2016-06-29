@@ -1,0 +1,7 @@
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.pdb
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.csprojResolveAssemblyReference.cache
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.dll
+c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.pdb
