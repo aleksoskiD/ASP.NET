@@ -33,13 +33,17 @@ namespace TaskMenagementSystem.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Register(User user)
+        public ActionResult Register(User user, string confirmPassword)
         {
             if (ModelState.IsValid)
             {
-                if (_userRepository.Register(user))
-                    return RedirectToAction("Index", "Home");
+                if (user.Password.Equals(confirmPassword))
+                {
+                    if (_userRepository.Register(user))
+                        return RedirectToAction("Index", "Home");
+                }
             }
+            ViewBag.ErrorPassword = "Passwords are not equal";
             return View();
         }
 

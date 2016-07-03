@@ -65,7 +65,7 @@ namespace Repository
         {
             var dbUser = GetById(user.ID);
 
-            if(user != null)
+            if(dbUser != null)
             {
                 db.Entry(dbUser).CurrentValues.SetValues(user);
                 db.SaveChanges();

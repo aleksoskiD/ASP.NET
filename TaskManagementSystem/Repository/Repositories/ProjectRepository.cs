@@ -26,7 +26,14 @@ namespace Repository.Repositories
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Project dbProject = GetById(id);
+            if(dbProject != null)
+            {
+                db.Projects.Remove(dbProject);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<Project> GetAll()
@@ -41,7 +48,14 @@ namespace Repository.Repositories
 
         public bool Update(Project project)
         {
-            throw new NotImplementedException();
+            var dbProject = GetById(project.ID);
+            if(dbProject != null)
+            {
+                db.Entry(dbProject).CurrentValues.SetValues(project);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

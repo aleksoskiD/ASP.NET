@@ -9,6 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<span style="color:red">@ViewBag.ErrorProject</span>
 <table class="table">
     <tr>
         <th>
@@ -58,8 +60,9 @@
             @if (item.IsActive == true)
             {
                 @Html.ActionLink("Edit  ", "Edit", new { id = item.ID })
-                @Html.ActionLink("  Details  ", "Details", new { id = item.ID })
-                @Html.ActionLink("  Delete  ", "Delete", new { id = item.ID })
+                <form method="post" action="~/Project/Delete/@item.ID" style="display:inline-block">
+                    <input type="submit" value="Delete" class="btn-link"/>
+                </form>
             }
             else
             {
@@ -69,5 +72,4 @@
         </td>
     </tr>
 }
-
 </table>
