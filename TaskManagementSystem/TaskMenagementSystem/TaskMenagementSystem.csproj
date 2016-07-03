@@ -183,6 +183,7 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Task\UserTask.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

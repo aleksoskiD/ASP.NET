@@ -10,7 +10,8 @@
 <p>
     @Html.ActionLink("Create New", "Register")
 </p>
-
+@if (ViewBag.InactiveUsers != 0)
+{
 <h3 style="font-weight:bold">Pending...</h3>
 <table class="table">
     <tr>
@@ -29,7 +30,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.Where(x => x.IsActive == false)){
+    @foreach (var item in Model.Where(x => x.IsActive == false))
+    {
         <tr>
             <td>
                 @Html.ActionLink(item.Email, "UserTask", "Task", new { email = item.Email }, null)
@@ -53,6 +55,7 @@
     }
 
 </table>
+}
 <br />
 
 <h3 style="font-weight:bold">Active</h3>
@@ -89,27 +92,19 @@
             @Html.DisplayFor(modelItem => user.DateCreated)
         </td>
         <td>
-            @countFunction(user.ID)
+            @Html.DisplayFor(modelItem => user.Tasks.Count)
         </td>
         <td>
             @Html.DisplayFor(modelItem => user.IsActive)
         </td>
         <td>
-            <form method="post" action="~/Account/Activate/@user.ID">
+            <form method="post" action="~/Account/Deactivate/@user.ID" style="display:inline-block">
                 <input type="submit" value="Deactivate" class="btn btn-link"/>
             </form>
             @*@Html.ActionLink("Deactivate", "Delete", new { id=item.ID })*@
+            @Html.ActionLink("Edit", "Edit", "Account", new { id = user.ID }, null)
         </td>
     </tr>
 }
 
 </table>
-
-@functions{
-    public int countFunction(int id)
-    {
-        
-        return 5;
-    }
-
-}

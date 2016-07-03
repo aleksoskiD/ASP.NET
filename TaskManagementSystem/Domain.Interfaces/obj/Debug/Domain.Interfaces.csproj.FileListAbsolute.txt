@@ -5,3 +5,9 @@ c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.I
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.csprojResolveAssemblyReference.cache
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.dll
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.pdb

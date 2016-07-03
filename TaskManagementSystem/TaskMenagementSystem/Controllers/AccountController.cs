@@ -20,8 +20,9 @@ namespace TaskMenagementSystem.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            //var cnt = _taskRepository.GetAll().OrderBy(x => x.UserId).ToList();
-            return View(_userRepository.GetAll().Where(x=>x.Role != "Admin"));
+            var users = _userRepository.GetAll().Where(x => x.Role != "Admin");
+            ViewBag.InactiveUsers = users.Where(x => x.IsActive == false).Count();
+            return View(users);
         }
 
         [AllowAnonymous]
@@ -88,10 +89,38 @@ namespace TaskMenagementSystem.Controllers
         [HttpPost]
         public ActionResult Activate(int id)
         {
-            if(_userRepository.Delete(id))
+            if(_userRepository.Activate(id))
                 return RedirectToAction("Index");
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Deactivate(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userRepository.Deactivate(id))
+                    return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var user = _userRepository.GetById(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userRepository.Update(user))
+                    return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

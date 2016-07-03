@@ -13,6 +13,7 @@ namespace Domain.Interfaces
         User GetById(int id);
         bool Register(User user);
         bool Update(User user);
-        bool Delete(int id);
+        bool Deactivate(int id);
+        bool Activate(int id);
     }
 }

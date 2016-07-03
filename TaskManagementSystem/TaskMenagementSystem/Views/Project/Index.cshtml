@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.DateCreated)
         </td>
         <td>
-
+            @Html.DisplayFor(modelItem => item.Tasks.Count)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
@@ -71,11 +71,3 @@
 }
 
 </table>
-
-@functions{
-    public int taskCount(int id)
-    {
-
-    }
-
-}

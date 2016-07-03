@@ -12,3 +12,17 @@ c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Reposito
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.dll
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.xml
 c:\users\dac\documents\visual studio 2015\Projects\TaskMenagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Repository.dll.config
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Repository.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Repository.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Domain.Entities.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Domain.Interfaces.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\EntityFramework.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\Domain.Interfaces.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\EntityFramework.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\obj\Debug\Repository.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Repository\obj\Debug\Repository.pdb

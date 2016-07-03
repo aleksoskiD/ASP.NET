@@ -25,22 +25,28 @@ namespace Repository
             return false;
         }
 
-        public bool Delete(int id)
+        public bool Activate (int id)
         {
             var user = GetById(id);
-            if(user != null)
+            if (user != null)
             {
-                if(user.IsActive == false){
-                    user.IsActive = true;
-                    db.Entry(user).CurrentValues.SetValues(user);
-                    db.SaveChanges();
-                    return true;
-                }else{
-                    user.IsActive = false;
-                    db.Entry(user).CurrentValues.SetValues(user);
-                    db.SaveChanges();
-                    return true;
+                user.IsActive = true;
+                db.Entry(user).CurrentValues.SetValues(user);
+                db.SaveChanges();
+                return true;
                 }
+            return false;
+        }
+
+        public bool Deactivate(int id)
+        {
+            var user = GetById(id);
+            if (user != null)
+            {
+                user.IsActive = false;
+                db.Entry(user).CurrentValues.SetValues(user);
+                db.SaveChanges();
+                return true;
             }
             return false;
         }
@@ -57,7 +63,15 @@ namespace Repository
 
         public bool Update(User user)
         {
-            throw new NotImplementedException();
+            var dbUser = GetById(user.ID);
+
+            if(user != null)
+            {
+                db.Entry(dbUser).CurrentValues.SetValues(user);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
