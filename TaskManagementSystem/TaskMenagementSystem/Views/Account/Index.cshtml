@@ -101,8 +101,12 @@
             <form method="post" action="~/Account/Deactivate/@user.ID" style="display:inline-block">
                 <input type="submit" value="Deactivate" class="btn btn-link"/>
             </form>
-            @*@Html.ActionLink("Deactivate", "Delete", new { id=item.ID })*@
+           
             @Html.ActionLink("Edit", "Edit", "Account", new { id = user.ID }, null)
+        </td>
+        <td>
+
+            @Html.ActionLink("Delete", "Delete", new { id = user.ID }, null)
         </td>
     </tr>
 }

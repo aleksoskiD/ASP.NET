@@ -56,6 +56,7 @@
         $(document).ready(function () {
             //function will be called on button click having id btnsave
             $("#saveProject").click(function () {
+                var test = $("#IsActive").val();
                 $.ajax(
                 {
                     type: "POST", //HTTP POST Method  
@@ -64,10 +65,15 @@
                         Name: $("#Name").val(), //Reading text box values using Jquery   
                         CustomerId: $("#CustomerId").val(),
                         IsActive: $("#IsActive").val()
+                    },
+                    success: function (response) {
+                        if (response.result == "Redirect") {
+                            window.location.reload();
+                        }
+                            
                     }
                 });
-
             });
-        });
+        }); 
 </script>
 }

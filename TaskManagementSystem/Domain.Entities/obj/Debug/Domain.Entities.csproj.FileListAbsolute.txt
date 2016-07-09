@@ -8,3 +8,7 @@ C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Entities\bin\D
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.csprojResolveAssemblyReference.cache
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.dll
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\bin\Debug\Domain.Entities.dll
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\bin\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.dll
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.pdb

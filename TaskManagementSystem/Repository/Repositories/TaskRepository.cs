@@ -26,7 +26,16 @@ namespace Repository.Repositories
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var dbTask = GetById(id);
+            var newTask = dbTask;
+            if(dbTask != null)
+            {
+                newTask.IsActive = false;
+                db.Entry(dbTask).CurrentValues.SetValues(newTask);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<Task> GetAll()
@@ -41,7 +50,7 @@ namespace Repository.Repositories
 
         public Task GetById(int id)
         {
-            throw new NotImplementedException();
+            return db.Tasks.FirstOrDefault(x=>x.ID == id);
         }
 
         public List<TaskComment> GetComments(int taskId)
@@ -51,7 +60,80 @@ namespace Repository.Repositories
 
         public bool Update(Task task)
         {
-            throw new NotImplementedException();
+            var dbTask = GetById(task.ID);
+            if(dbTask != null)
+            {
+                db.Entry(dbTask).CurrentValues.SetValues(task);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateTaskStatus(int id, string status) {
+            var dbTask = GetById(id);
+            var newTask = dbTask;
+            TaskStatus taskStatus;
+          
+            switch (status)
+            {
+                case "ToDo":
+                    {
+                        taskStatus = TaskStatus.ToDo;
+                        if(dbTask.Status.ToString() == "InProgress" || dbTask.Status.ToString() == "InTesting")
+                        {
+                            newTask.Status = taskStatus;
+                            db.Entry(dbTask).CurrentValues.SetValues(newTask);
+                            db.SaveChanges();
+                            return true;
+                        }
+                        return false;
+                        //break;
+                    }
+                case "InProgress":
+                    {
+                        taskStatus = TaskStatus.InProgress;
+                        if (dbTask.Status.ToString() == "ToDo")
+                        {
+                            newTask.Status = taskStatus;
+                            db.Entry(dbTask).CurrentValues.SetValues(newTask);
+                            db.SaveChanges();
+                            return true;
+                        }
+                        return false;
+                        //break;
+                    }
+                case "InTesting":
+                    {
+                        taskStatus = TaskStatus.InTesting;
+                        if (dbTask.Status.ToString() == "InProgress" || dbTask.Status.ToString() == "InTesting" || dbTask.Status.ToString() == "ToDo")
+                        {
+                            newTask.Status = taskStatus;
+                            db.Entry(dbTask).CurrentValues.SetValues(newTask);
+                            db.SaveChanges();
+                            return true;
+                        }
+                        return false;
+                        //break;
+                    }
+                case "Done":
+                    {
+                        taskStatus = TaskStatus.Done;
+                        if (dbTask.Status.ToString() == "InProgress" || dbTask.Status.ToString() == "InTesting")
+                        {
+                            newTask.Status = taskStatus;
+                            db.Entry(dbTask).CurrentValues.SetValues(newTask);
+                            db.SaveChanges();
+                            return true;
+                        }
+                        return false;
+                        //break;
+                    }
+                default:
+                    break;
+            }
+
+            return false;
         }
     }
 }

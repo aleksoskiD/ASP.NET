@@ -20,6 +20,7 @@ namespace TaskMenagementSystem.Controllers
         public ActionResult Index()
         {
             ViewBag.TasksCount = _taskRepository.GetAll();
+            ViewBag.CustomerId = new SelectList(_customerRepository.GetAll().Where(x => x.IsActive == true), "ID", "Email");
             return View(_projectRepository.GetAll());
         }
 
@@ -35,10 +36,12 @@ namespace TaskMenagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_projectRepository.Create(project))
-                    return Json(true, JsonRequestBehavior.AllowGet);
+                var newProject = _projectRepository.Create(project);
+
+                if (newProject.Equals(null))
+                    return Json(new { success = true, newProject}, JsonRequestBehavior.AllowGet);
             }
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false });
         }
 
         public ActionResult Edit(int id)
@@ -65,8 +68,13 @@ namespace TaskMenagementSystem.Controllers
             if(_projectRepository.Delete(id))
                 return RedirectToAction("Index");
 
-            ViewBag.ErrorProject = "Error while deletin project";
+            ViewBag.ErrorProject = "Error while deleting project";
             return RedirectToAction("Index");
+        }
+
+        public ActionResult jQueryUI()
+        {
+            return View();
         }
     }
 }

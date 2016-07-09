@@ -11,3 +11,10 @@ C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.pdb
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.dll
 C:\Users\Dac\Documents\GitHub\ASP.NET\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.dll
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Interfaces.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.dll
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\bin\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.dll
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Interfaces\obj\Debug\Domain.Interfaces.pdb

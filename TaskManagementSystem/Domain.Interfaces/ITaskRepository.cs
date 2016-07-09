@@ -12,6 +12,7 @@ namespace Domain.Interfaces
         Task GetById(int id);
         bool Create(Task task);
         bool Update(Task task);
+        bool UpdateTaskStatus(int id, string status);
         bool Delete(int id);
 
         List<TaskComment> GetComments(int taskId);

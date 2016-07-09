@@ -66,7 +66,7 @@ namespace TaskMenagementSystem.Controllers
 
             if (dbUser == null || dbUser.IsActive == false)
             {
-                ViewBag.Msg = "Invalid User or the User does not exist!";
+                ViewBag.Msg = "Invalid User or the User is pending activation!";
                 return View();
             }
             else
@@ -126,5 +126,26 @@ namespace TaskMenagementSystem.Controllers
             }
             return View();
         }
+
+
+
+
+        public ActionResult Delete(int id)
+        {
+            return View(_userRepository.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_userRepository.Deactivate(user.ID))
+                    return RedirectToAction("Index");
+            }
+
+            return View();
+        }
     }
+
 }

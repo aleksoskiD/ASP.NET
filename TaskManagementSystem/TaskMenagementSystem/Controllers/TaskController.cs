@@ -55,7 +55,6 @@ namespace TaskMenagementSystem.Controllers
             return View();
         }
 
-       
         [HttpPost]
         [Authorize(Roles = "Admin, User")]
         public ActionResult Create(Task task)
@@ -69,6 +68,18 @@ namespace TaskMenagementSystem.Controllers
             ViewBag.UserId = new SelectList(_userRepository.GetAll(), "ID", "Email");
             ViewBag.ErrorMessage = "Error";
             return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, User")]
+        public JsonResult UpdateTask(int id, string status)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_taskRepository.UpdateTaskStatus(id, status))
+                    return Json(new { success = true}, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
     }
 }

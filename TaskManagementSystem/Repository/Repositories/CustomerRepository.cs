@@ -26,7 +26,16 @@ namespace Repository.Repositories
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var dbCustomer = GetById(id);
+            var newCustomer = dbCustomer;
+            if(dbCustomer != null)
+            {
+                newCustomer.IsActive = false;
+                db.Entry(dbCustomer).CurrentValues.SetValues(newCustomer);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<Customer> GetAll()
@@ -36,12 +45,19 @@ namespace Repository.Repositories
 
         public Customer GetById(int id)
         {
-            throw new NotImplementedException();
+            return db.Customers.FirstOrDefault(z => z.ID == id);
         }
 
         public bool Update(Customer customer)
         {
-            throw new NotImplementedException();
+            var dbCustomer = GetById(customer.ID);
+            if(dbCustomer != null)
+            {
+                db.Entry(dbCustomer).CurrentValues.SetValues(customer);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

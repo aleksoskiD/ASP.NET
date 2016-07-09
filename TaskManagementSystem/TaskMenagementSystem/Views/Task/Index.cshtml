@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Domain.Entities.Task>
+﻿@using Domain.Entities
+
+@model IEnumerable<Domain.Entities.Task>
 
 @{
     ViewBag.Title = "Index";
@@ -9,89 +11,181 @@
 <p>
     @Html.ActionLink("Create New", "Create", new { id = ViewBag.ProjectId })
 </p>
+<p>
+   <button class="btn btn-link" id="createTask">Create</button>
+</p>
 <hr />
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">To Do</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("ToDo"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="col-sm-12 taskStatus" style="padding:0px">*@
-                }
-             }
-         </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Progress</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("InProgress"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Testing</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("InTesting"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">Done</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("Done"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
+
+<form>
+
+
+</form>
+
+
+
+<div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form>
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
 </div>
+
+
+
+
+
+<div class="row ui-widget ui-helper-clearfix">
+    @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+    {
+        <ul id="@status" style="border: 1px solid #eee; width: 250px; min-height: 20px; list-style-type: none; margin: 0; padding: 2% 0 0 0; float: left; margin-right: 10px;">
+            <lh>@status</lh>
+            @foreach (var item in Model)
+            {
+                if (item.Status == status)
+                {
+                    <li class="ui-state-highlight" id="@item.ID" style="margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 238px;">
+                         @Html.DisplayFor(modelItem => item.Name)
+                        <ul>
+                            <li>@item.Status</li>
+                            <li>@item.Description</li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    }
+</div>
+
+@section scripts{
+    <script>
+        $(function() {
+            $("#ToDo").sortable({
+                connectWith: "#InProgress, #InTesting",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "ToDo"
+                        },
+                        success : function (data) {
+                            debugger;
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+                   
+                    //$('#ToDo').sortable("refresh");
+                }
+            })
+            $("#InProgress").sortable({
+                connectWith: "#ToDo, #InTesting, #Done",
+                helper: "InProgress",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url : "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "InProgress"
+                        },
+                        success: function (data) {
+                            debugger;
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+                   
+                    //$('#InProgress').sortable("refresh");
+                }
+            })
+            $("#InTesting").sortable({
+                connectWith: "#ToDo, #Done",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "InTesting"
+                        },
+                        success: function (data) {
+                            debugger;
+                            console.log(data);
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+                    
+                    // $('#InTesting').sortable("refresh");
+                },
+
+            });
+            $("#Done").sortable({
+                connectWith: "#InProgress, #InTesting",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "Done"
+                        },
+                        success: function (data) {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+                    
+                    //$('#Done').sortable("refresh");
+                }
+            });
+            //
+
+            //var dialog, form
+
+            //dialog = $("#dialog-form").dialog({
+            //    autoOpen: false,
+            //    height: 300,
+            //    width: 350,
+            //});
+
+            //form = dialog.find("form").on("submit", function (event) {
+            //    event.preventDefault();
+            //    addUser();
+            //});
+
+            //$("#createTask").button().on("click", function () {
+            //    dialog.dialog("open");
+            //});
+
+            //function addUser() {
+            //    alert("hello");
+            //}
+
+
+        });
+  </script>
+
+    
+    }
