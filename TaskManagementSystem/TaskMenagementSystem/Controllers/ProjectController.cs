@@ -21,14 +21,9 @@ namespace TaskMenagementSystem.Controllers
         {
             ViewBag.TasksCount = _taskRepository.GetAll();
             ViewBag.CustomerId = new SelectList(_customerRepository.GetAll().Where(x => x.IsActive == true), "ID", "Email");
+            ViewBag.CustomerIdForEdit = new SelectList(_customerRepository.GetAll().Where(x => x.IsActive == true), "ID", "Email");
+
             return View(_projectRepository.GetAll());
-        }
-
-        public ActionResult Create()
-        {
-            ViewBag.CustomerId = new SelectList(_customerRepository.GetAll().Where(x=>x.IsActive == true), "ID", "Email");
-
-            return View();
         }
 
         [HttpPost]
@@ -36,30 +31,10 @@ namespace TaskMenagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newProject = _projectRepository.Create(project);
-
-                if (newProject.Equals(null))
-                    return Json(new { success = true, newProject}, JsonRequestBehavior.AllowGet);
+                if (_projectRepository.Create(project))
+                    return Json(new { status = true }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { success = false });
-        }
-
-        public ActionResult Edit(int id)
-        {
-            Project project = _projectRepository.GetById(id);
-             ViewBag.CustomerId = new SelectList(_customerRepository.GetAll().Where(x=>x.IsActive == true), "ID", "Email");
-            return View(project);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Project project)
-        {
-            if (ModelState.IsValid)
-            {
-                if (_projectRepository.Update(project))
-                    return RedirectToAction("Index");
-            }
-            return View(project);
+            return Json(new { status = false });
         }
 
         [HttpPost]
@@ -72,9 +47,22 @@ namespace TaskMenagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult jQueryUI()
+        [HttpPost]
+        public JsonResult UpdateProject(int id, string projectName, int customerId, bool isActive)
         {
-            return View();
+            Project project = new Project
+            {
+                ID = id,
+                Name = projectName,
+                CustomerId = customerId,
+                IsActive = isActive
+            };
+            if (ModelState.IsValid)
+            {
+                if(_projectRepository.Update(project))
+                return Json(new { status = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { status = false });
         }
     }
 }

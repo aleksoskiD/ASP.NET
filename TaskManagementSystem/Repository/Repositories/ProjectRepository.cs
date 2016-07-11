@@ -51,6 +51,7 @@ namespace Repository.Repositories
             var dbProject = GetById(project.ID);
             if(dbProject != null)
             {
+                project.DateCreated = dbProject.DateCreated;
                 db.Entry(dbProject).CurrentValues.SetValues(project);
                 db.SaveChanges();
                 return true;

@@ -9,39 +9,93 @@
 <h3 style="font-weight:600">Tasks for <span style="color:cornflowerblue; font-weight:700">@ViewBag.ProjectName</span> </h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = ViewBag.ProjectId })
-</p>
-<p>
-   <button class="btn btn-link" id="createTask">Create</button>
+   <button class="btn btn-link" id="createTask">Create New</button>
 </p>
 <hr />
 
-<form>
+<div id="addTask">
+    <form id="taskForm" title="Create New Task">
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label class="control-label col-md-2">Description</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="description" name="description" />
+                </div>
+            </div>
 
-</form>
+            <div class="form-group">
+                <label class="control-label col-md-2">EstimatedHours</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="estimatedHours" name="estimatedHours" />
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label class="control-label col-md-2">EndDateTime</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="endDateTime" name="endDateTime" />
+                </div>
+            </div>
 
+            <div class="form-group">          
+                <label class="control-label col-md-2">Type</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="type">
+                        @foreach (TaskType type in Enum.GetValues(typeof(TaskType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+            </div>
 
-<div id="dialog-form" title="Create new user">
-    <p class="validateTips">All form fields are required.</p>
+            <div class="form-group">
+                <label class="control-label col-md-2">Status</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="status">
+                        @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+            </div>
 
-    <form>
-        <fieldset>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+            <div class="form-group">
+                <label class="control-label col-md-2">UserId</label>
+                <div class="col-md-10">
+                   @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
 
-            <!-- Allow form submission with keyboard without duplicating the dialog button -->
-            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-        </fieldset>
+            <div class="form-group">
+                <label class="control-label col-md-2">ProjectId</label>
+                <div class="col-md-10">
+                    <input type="text" id="ProjectId" class="form-control" value="@ViewBag.ProjectId" readonly/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">IsActive</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBox("IsActive")
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
-
-
 
 
 
@@ -49,16 +103,18 @@
     @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
     {
         <ul id="@status" style="border: 1px solid #eee; width: 250px; min-height: 20px; list-style-type: none; margin: 0; padding: 2% 0 0 0; float: left; margin-right: 10px;">
-            <lh>@status</lh>
+            <li style="font-size: 2em; margin-top: -10px"><b>@status</b></li>
             @foreach (var item in Model)
             {
                 if (item.Status == status)
                 {
-                    <li class="ui-state-highlight" id="@item.ID" style="margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 238px;">
-                         @Html.DisplayFor(modelItem => item.Name)
-                        <ul>
-                            <li>@item.Status</li>
-                            <li>@item.Description</li>
+                    <li class="ui-state-highlight" id="@item.ID" style="margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 238px; border-radius:5px">
+                         @*@Html.DisplayFor(modelItem => item.Name)*@
+                        <ul style="list-style-type: none">
+                            <li><b>Name:</b>  @item.Name</li>
+                            <li><b>Type:</b>  @item.Type</li>
+                            <li><b>Status:</b>  @item.Status</li>
+                            <li><b>Description:</b>  @item.Description</li>
                         </ul>
                     </li>
                 }
@@ -68,7 +124,7 @@
 </div>
 
 @section scripts{
-    <script>
+    <script type="text/javascript">
         $(function() {
             $("#ToDo").sortable({
                 connectWith: "#InProgress, #InTesting",
@@ -156,36 +212,72 @@
                             alert("error")
                         }
                     });
-                    
-                    //$('#Done').sortable("refresh");
                 }
             });
-            //
 
-            //var dialog, form
-
-            //dialog = $("#dialog-form").dialog({
-            //    autoOpen: false,
-            //    height: 300,
-            //    width: 350,
-            //});
-
-            //form = dialog.find("form").on("submit", function (event) {
-            //    event.preventDefault();
-            //    addUser();
-            //});
-
-            //$("#createTask").button().on("click", function () {
-            //    dialog.dialog("open");
-            //});
-
-            //function addUser() {
-            //    alert("hello");
-            //}
-
+            $("#taskForm").dialog({
+                autoOpen: false,
+                width: 800,
+                height: 550,
+                modal: true,
+                close: function (event, ui) {
+                    location.reload(false);
+                },
+                buttons:
+                {
+                    "Add": function () {
+                        var type= $("#type").val();
+                        var status = $("#status").val();
+                        var isActive = $("#IsActive").is(':checked');
+                        var task = {
+                            Name: $("#name").val(),
+                            Description: $("#description").val(),
+                            EstimatedHours: $("#estimatedHours").val(),
+                            EndDateTime: $("#endDateTime").val(),
+                            TaskType: type,
+                            TaskStatus: status,
+                            UserId: $("#UserId").val(),
+                            ProjectId: $("#ProjectId").val(),
+                            IsActive: isActive
+                        }
+                        $.ajax(
+               {
+                   type: "POST", //HTTP POST Method  
+                   url: "/Task/Create", // Controller/View   
+                   data:  //task,//$("#taskForm").serialize(),
+                       {
+                           Name: $("#name").val(),
+                           Description: $("#description").val(),
+                           EstimatedHours: $("#estimatedHours").val(),
+                           EndDateTime: $("#endDateTime").val(),
+                           TaskType: type,
+                           TaskStatus: status,
+                           UserId: $("#UserId").val(),
+                           ProjectId: $("#ProjectId").val(),
+                           IsActive: isActive
+                       },
+                   success: function (status) {
+                       // alert("done");
+                       $("#taskForm").dialog("close");
+                   },
+                   error: function () {
+                      // alert("fail");
+                       $("#taskForm").dialog("close");
+                   }
+               });
+                    },
+                    "Cancel": function () {
+                        //cancel
+                        $("#taskForm").dialog("close");
+                    }
+                }
+            });
+        
+            $("#createTask").click(function (event) {
+                event.preventDefault();
+                $("#taskForm").dialog("open");
+            });
 
         });
   </script>
-
-    
-    }
+}

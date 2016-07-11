@@ -7,8 +7,48 @@
 <h2>Customers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button id="createCustomer" class="btn btn-link">Create New</button>
 </p>
+
+<div id="addCustomer">
+    <form id="customerForm" title="Create New Customer">
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Company</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="company" name="company" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="email" name="email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">IsActive</label>
+                <div class="col-md-10">
+                    <input type="checkbox" class="form-control" name="IsActive" value="true" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
 <table class="table">
     <tr>
         <th>
@@ -55,3 +95,47 @@
 }
 
 </table>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#customerForm").dialog({
+                autoOpen: false,
+                width: 600,
+                height: 400,
+                modal: true,
+                close: function (event, ui) {
+                    location.reload(false);
+                },
+                buttons:
+                {
+                    "Add": function () {
+                        $.ajax({
+                            type: "POST", //HTTP POST Method
+                            url: "/Customer/Create", // Controller/View
+                            data: $("#customerForm").serialize(),
+                            success: function (status) {
+                                // alert("done");
+                                $("#customerForm").dialog("close");
+                            },
+                            error: function () {
+                                // alert("fail");
+                                $("#customerForm").dialog("close");
+                            }
+                        });
+                    },
+                    "Cancel": function () {
+                        //cancel
+                        $("#customerForm").dialog("close");
+                    }
+                }
+            });
+
+            $("#createCustomer").click(function (event) {
+                event.preventDefault();
+                $("#customerForm").dialog("open");
+            });
+        });
+    </script>
+}

@@ -20,20 +20,15 @@ namespace TaskMenagementSystem.Controllers
             return View(_customerRepository.GetAll());
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public JsonResult Create(Customer customer)
         {
             if (ModelState.IsValid)
             {
                 if (_customerRepository.Create(customer))
-                    return RedirectToAction("Index");
+                    return Json(new { status = true }, JsonRequestBehavior.AllowGet);
             }
-            return View();
+            return Json(new { status = false }, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -12,3 +12,4 @@ C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.E
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\bin\Debug\Domain.Entities.pdb
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.pdb
+C:\Users\Dac\Documents\Visual Studio 2015\Projects\TaskManagementSystem\Domain.Entities\obj\Debug\Domain.Entities.csprojResolveAssemblyReference.cache

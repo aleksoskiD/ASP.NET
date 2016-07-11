@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Domain.Entities.Task>
+﻿@using Domain.Entities
+
+@model IEnumerable<Domain.Entities.Task>
 
 @{
     ViewBag.Title = "UserTask";
@@ -7,90 +9,273 @@
 <h2>Tasks for <span style="color: blue">@ViewBag.UserEmail</span></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { email = ViewBag.UserEmail })
+    <button class="btn btn-link" id="createTask">Create New</button>
 </p>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">To Do</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("ToDo"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
+
+<div id="addTask">
+    <form id="taskForm" title="Create New Task">
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Description</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="description" name="description" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">EstimatedHours</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="estimatedHours" name="estimatedHours" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">EndDateTime</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="endDateTime" name="endDateTime" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Type</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="type">
+                        @foreach (TaskType type in Enum.GetValues(typeof(TaskType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Status</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="status">
+                        @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">UserId</label>
+                <div class="col-md-10">
+                    @*@Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })*@
+                    <input type="text" class="form-control" id="userId" value="@ViewBag.UserId" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">ProjectId</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">IsActive</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.CheckBox("IsActive")
                     </div>
-                }
-            }
+                </div>
+            </div>
         </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Progress</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("InProgress"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">In Testing</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("InTesting"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-        <div class="col-sm-3">
-            <h2 style="font-weight:bold; color:ThreeDDarkShadow">Done</h2>
-            @foreach (var item in Model)
-            {
-                if (item.Status.ToString().Equals("Done"))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div class="thumbnail">
-                                <div class="caption">
-                                    <h4 style="font-weight:800">@item.Name</h4>
-                                    <h4>@item.Type</h4>
-                                    <h4>@item.Status</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
+    </form>
 </div>
+
+
+
+
+<div class="row ui-widget ui-helper-clearfix">
+    @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
+    {
+        <ul id="@status" style="border: 1px solid #eee; width: 250px; min-height: 20px; list-style-type: none; margin: 0; padding: 2% 0 0 0; float: left; margin-right: 10px;">
+            <li style="font-size: 2em; margin-top: -10px"><b>@status</b></li>
+            @foreach (var item in Model)
+            {
+                if (item.Status == status)
+                {
+                    <li class="ui-state-highlight" id="@item.ID" style="margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 238px; border-radius:5px">
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
+                        <ul style="list-style-type: none">
+                            <li><b>Name:</b>  @item.Name</li>
+                            <li><b>Type:</b>  @item.Type</li>
+                            <li><b>Status:</b>  @item.Status</li>
+                            <li><b>Description:</b>  @item.Description</li>
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    }
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function() {
+            $("#ToDo").sortable({
+                connectWith: "#InProgress, #InTesting",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "ToDo"
+                        },
+                        success : function (data) {
+                            debugger;
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+
+                    //$('#ToDo').sortable("refresh");
+                }
+            })
+            $("#InProgress").sortable({
+                connectWith: "#ToDo, #InTesting, #Done",
+                helper: "InProgress",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url : "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "InProgress"
+                        },
+                        success: function (data) {
+                            debugger;
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+
+                    //$('#InProgress').sortable("refresh");
+                }
+            })
+            $("#InTesting").sortable({
+                connectWith: "#ToDo, #Done",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "InTesting"
+                        },
+                        success: function (data) {
+                            debugger;
+                            console.log(data);
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+
+                    // $('#InTesting').sortable("refresh");
+                },
+
+            });
+            $("#Done").sortable({
+                connectWith: "#InProgress, #InTesting",
+                receive: function (event, ui) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Task/UpdateTask",
+                        data: {
+                            id: ui.item[0.].id,
+                            status: "Done"
+                        },
+                        success: function (data) {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("error")
+                        }
+                    });
+                }
+            });
+
+            $("#taskForm").dialog({
+                autoOpen: false,
+                width: 800,
+                height: 550,
+                modal: true,
+                close: function (event, ui) {
+                    location.reload(false);
+                },
+                buttons:
+                {
+                    "Add": function () {
+                        var name = $("#name").val();
+                        var description = $("#description").val();
+                        var estimatedHours = $("#estimatedHours").val();
+                        var endDateTime = $("#endDateTime").val();
+                        var type= $("#type").val();
+                        var status = $("#status").val();
+                        var user = $("#userId").val();
+                        var project = $("#ProjectId").val();
+                        var isActive = $("#IsActive").is(':checked');
+
+                        var task = {
+                            Name: $("#name").val(),
+                            Description: $("#description").val(),
+                            EstimatedHours: $("#estimatedHours").val(),
+                            EndDateTime: $("#endDateTime").val(),
+                            TaskType: type,
+                            TaskStatus: status,
+                            UserId: user,
+                            ProjectId: $("#ProjectId").val(),
+                            IsActive: isActive
+                        }
+                        $.ajax({
+                                type: "POST", //HTTP POST Method
+                                url: "/Task/CreateTask", // Controller/View
+                                data: task,//$("#taskForm").serialize(),
+                                success: function (success) {
+                                   // alert("done");
+                                   $("#taskForm").dialog("close");
+                               },
+                                error: function () {
+                                     // alert("fail");
+                                     $("#taskForm").dialog("close");
+                                }
+                        });
+                    },
+                    "Cancel": function () {
+                        //cancel
+                        $("#taskForm").dialog("close");
+                    }
+                }
+            });
+
+            $("#createTask").click(function (event) {
+                event.preventDefault();
+                $("#taskForm").dialog("open");
+            });
+
+        });
+    </script>
+}
