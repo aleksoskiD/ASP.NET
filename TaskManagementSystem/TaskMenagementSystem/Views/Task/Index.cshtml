@@ -102,7 +102,7 @@
 <div class="row ui-widget ui-helper-clearfix">
     @foreach (TaskStatus status in Enum.GetValues(typeof(TaskStatus)))
     {
-        <ul id="@status" style="border: 1px solid #eee; width: 250px; min-height: 20px; list-style-type: none; margin: 0; padding: 2% 0 0 0; float: left; margin-right: 10px;">
+        <ul id="@status" style="border: 1px solid #eee; width: 250px; min-height: 20px; list-style-type: none; margin: 0; padding: 2% 0 0 0; float: left; margin-right: 10px; border-radius:5px">
             <li style="font-size: 2em; margin-top: -10px"><b>@status</b></li>
             @foreach (var item in Model)
             {
@@ -111,10 +111,12 @@
                     <li class="ui-state-highlight" id="@item.ID" style="margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 238px; border-radius:5px">
                          @*@Html.DisplayFor(modelItem => item.Name)*@
                         <ul style="list-style-type: none">
+                            <li id="itemId" hidden>@item.ID</li>
                             <li><b>Name:</b>  @item.Name</li>
                             <li><b>Type:</b>  @item.Type</li>
                             <li><b>Status:</b>  @item.Status</li>
                             <li><b>Description:</b>  @item.Description</li>
+                            <li><button id="@item.ID" class="btn btn-info btn-xs">More...</button></li>
                         </ul>
                     </li>
                 }
@@ -122,6 +124,90 @@
         </ul>
     }
 </div>
+
+<div id="taskDetails">
+    <form id="detailsTaskForm" title="Create New Task">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-6">Name</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="nameDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">Description</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="descriptionDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">EstimatedHours</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="estimatedHoursDetails"></label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-6">StartDateTime</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="dateCreaterDetails"></label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-6">StartDateTime</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="startDateTimeDetails"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-6">EndDateTime</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="endDateTimeDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">Type</label>
+                <div class="col-md-6">
+                        <label class="control-label" id="typeDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">Status</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="statusDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">UserId</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="userDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">ProjectId</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="projectDetails"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-6">IsActive</label>
+                <div class="col-md-6">
+                    <label class="control-label" id="isActiveDetails"></label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 @section scripts{
     <script type="text/javascript">
@@ -240,31 +326,30 @@
                             ProjectId: $("#ProjectId").val(),
                             IsActive: isActive
                         }
-                        $.ajax(
-               {
-                   type: "POST", //HTTP POST Method  
-                   url: "/Task/Create", // Controller/View   
-                   data:  //task,//$("#taskForm").serialize(),
-                       {
-                           Name: $("#name").val(),
-                           Description: $("#description").val(),
-                           EstimatedHours: $("#estimatedHours").val(),
-                           EndDateTime: $("#endDateTime").val(),
-                           TaskType: type,
-                           TaskStatus: status,
-                           UserId: $("#UserId").val(),
-                           ProjectId: $("#ProjectId").val(),
-                           IsActive: isActive
-                       },
-                   success: function (status) {
-                       // alert("done");
-                       $("#taskForm").dialog("close");
-                   },
-                   error: function () {
-                      // alert("fail");
-                       $("#taskForm").dialog("close");
-                   }
-               });
+                        $.ajax({
+                            type: "POST", //HTTP POST Method  
+                            url: "/Task/Create", // Controller/View   
+                            data:  //task,//$("#taskForm").serialize(),
+                                {
+                                    Name: $("#name").val(),
+                                    Description: $("#description").val(),
+                                    EstimatedHours: $("#estimatedHours").val(),
+                                    EndDateTime: $("#endDateTime").val(),
+                                    TaskType: type,
+                                    TaskStatus: status,
+                                    UserId: $("#UserId").val(),
+                                    ProjectId: $("#ProjectId").val(),
+                                    IsActive: isActive
+                                },
+                        success: function (status) {
+                            // alert("done");
+                            $("#taskForm").dialog("close");
+                        },
+                        error: function () {
+                            // alert("fail");
+                            $("#taskForm").dialog("close");
+                        }
+                        });
                     },
                     "Cancel": function () {
                         //cancel
@@ -278,6 +363,53 @@
                 $("#taskForm").dialog("open");
             });
 
+            $("#detailsTaskForm").dialog({
+                autoOpen: false,
+                width: 600,
+                height: 550,
+                modal: true,
+                close: function (event, ui) {
+                    location.reload(false);
+                },
+                buttons:
+                {
+                    "Cancel": function () {
+                        //cancel
+                        $("#detailsTaskForm").dialog("close");
+                    }
+                }
+            });
+
+            $(".btn-info").click(function (event) {
+                event.preventDefault();
+                var projectId = event.currentTarget.id;
+
+                $.ajax({
+                    type: "GET", //HTTP POST Method  
+                    url: "/Task/Details?", // Controller/View   
+                    data: { "id": projectId },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (values) {
+                        $("#nameDetails").text(values.name);
+                        $("#descriptionDetails").text(values.description);
+                        $("#estimatedHoursDetails").text(values.estimateHours);
+                        $("#dateCreaterDetails").text(values.dateCreated);
+                        $("#startDateTimeDetails").text(values.startTime);
+                        $("#endDateTimeDetails").text(values.endTime);
+                        $("#typeDetails").text(values.type);
+                        $("#statusDetails").text(values.status);
+                        $("#userDetails").text(values.user);
+                        $("#projectDetails").text(values.project);
+                        $("#isActiveDetails").text(values.isActive);
+                         //alert("done");
+                    },
+                    error: function () {
+                         alert("fail");
+                    }
+                });
+                $("#detailsTaskForm").dialog("open");
+            });
         });
   </script>
 }

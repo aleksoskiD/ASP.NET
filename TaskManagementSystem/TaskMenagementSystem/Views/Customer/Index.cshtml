@@ -40,7 +40,9 @@
             <div class="form-group">
                 <label class="control-label col-md-2">IsActive</label>
                 <div class="col-md-10">
-                    <input type="checkbox" class="form-control" name="IsActive" value="true" />
+                    <div class="checkbox">
+                        @Html.CheckBox("IsActive")
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,11 +88,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        </td>*@
     </tr>
 }
 

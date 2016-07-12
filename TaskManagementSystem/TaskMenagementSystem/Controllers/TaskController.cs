@@ -93,5 +93,28 @@ namespace TaskMenagementSystem.Controllers
             }
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Details(int id)
+        {
+            if(id != 0)
+            {
+                var task = _taskRepository.GetById(id);
+                if (task != null)
+                    return Json(new { id = task.ID,
+                                    name = task.Name,
+                                    type = task.Type.ToString(),
+                                    status = task.Status.ToString(),
+                                    description = task.Description,
+                                    user = task.User.Email,
+                                    project = task.Project.Name,
+                                    estimateHours = task.EstimatedHours,
+                                    startTime = task.StartDateTime,
+                                    endTime = task.EndDateTime,
+                                    dateCreated = task.DateCreated.ToString(),
+                                    isActive = task.IsActive.ToString()
+                                    }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { status = false });
+        }
     }
 }
