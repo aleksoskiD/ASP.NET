@@ -1,0 +1,125 @@
+﻿@model IEnumerable<HotelApp.Domain.Entities.Floor>
+
+@{
+    ViewBag.Title = "Floors";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="page-header">Floors</h1>
+<ol class="breadcrumb">
+    <li class="active">
+        <i class="fa fa-dashboard"></i><a href="~/Admin"> Dashboard</a>&nbsp /&nbsp <i class="fa fa-arrows-alt"></i> Floors
+    </li>
+</ol>
+<p>
+    @*@Html.ActionLink("Create Floor", "CreateFloor")*@
+    @*<a href="~/Admin/CreateFloor"><h4>Create Floor</h4></a>*@
+    <button id="createFloor" class="btn btn-link">Create Floor</button>
+</p>
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FloorNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FloorNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRooms) <i class="fa fa-bed" aria-hidden="true"></i>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div id="addFloor">
+    <form id="floorForm" title="Create New Floor">
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Surname</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="surname" name="surname" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#floorForm").dialog({
+                autoOpen: false,
+                width: 600,
+                height: 350,
+                modal: true,
+                close: function (event, ui) {
+                    //dialog.dialog("close");
+                    $(this).dialog("close");
+                },
+                buttons:
+                {
+                    "Add": function () {
+                        $.ajax(
+               {
+                   type: "POST", //HTTP POST Method  
+                   url: "/Project/Create", // Controller/View   
+                   data: $("#floorForm").serialize(),
+                   success: function (status) {
+                       // alert("done");
+                       $("#floorForm").dialog("close");
+                   },
+                   error: function () {
+                       // alert("fail");
+                       $("#floorForm").dialog("close");
+                   }
+               });
+                    },
+                    "Cancel": function () {
+                        //cancel
+                        //$("#floortForm").dialog("close");
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#createFloor").click(function (event) {
+                //alert("Hellu");
+                //event.preventDefault();
+                $("#floorForm").dialog("open");
+            });
+        });
+    </script>
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HotelApp.Domain.Entities.Room>
+
+@{
+    ViewBag.Title = "Rooms";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="page-header">Rooms</h1>
+<ol class="breadcrumb">
+    <li class="active">
+        <i class="fa fa-dashboard"></i><a href="~/Admin"> Dashboard</a>&nbsp / &nbsp <i class="fa fa-bed"></i> Rooms
+    </li>
+</ol>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Floor.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Floor.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
