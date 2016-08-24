@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using HotelApp.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace HotelApp.Models
 {
@@ -18,6 +19,7 @@ namespace HotelApp.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public virtual List<Reservation> Reservations { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -32,16 +34,19 @@ namespace HotelApp.Models
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<HotelApp.Models.ApplicationUser> ApplicationUsers { get; set; }
-    }
-
-    public class HotelContext : DbContext
-    {
-        public HotelContext() 
-            : base("HotelConnection")
-        {
-        }
         public DbSet<Floor> Floors { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
+
+    //public class HotelContext : DbContext
+    //{
+    //    public HotelContext() 
+    //        : base("HotelConnection")
+    //    {
+    //    }
+       
+    //    //public DbSet<ApplicationUser> Guests { get; set; }
+
+    //}
 }

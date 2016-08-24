@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="IGuestRepository.cs" />
+    <Compile Include="IReservationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

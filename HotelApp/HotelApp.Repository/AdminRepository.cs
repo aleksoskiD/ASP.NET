@@ -11,25 +11,25 @@ namespace HotelApp.Repository
 {
     public class AdminRepository : IAdminRepository
     {
-        private HotelContext db = new HotelContext();
+       // private HotelContext db = new HotelContext();
         private ApplicationDbContext appDb = new ApplicationDbContext();
 
         // for floor
         public List<Floor> GetAllFloors()
         {
-            return db.Floors.ToList();
+            return appDb.Floors.ToList();
         }
 
         public Floor GetFloorById(int id)
         {
-            return db.Floors.FirstOrDefault(x => x.ID == id);
+            return appDb.Floors.FirstOrDefault(x => x.ID == id);
         }
 
         public bool CreateFloor(Floor floor)
         {
             var neso = GetAllFloors().Select(x => x.FloorNo).ToList();
 
-            if (floor != null)
+            if (floor != null && floor.FloorNo != 0)
             {
                 for (int i = 0; i < neso.Count; i++)
                 {
@@ -38,8 +38,8 @@ namespace HotelApp.Repository
                         return false;
                     }
                 }
-                db.Floors.Add(floor);
-                db.SaveChanges();
+                appDb.Floors.Add(floor);
+                appDb.SaveChanges();
                 return true;
             }
             return false;
@@ -52,15 +52,23 @@ namespace HotelApp.Repository
             {
                 // deactivate floor
                 deactivatedFloor.IsActive = false;
-                db.Entry(deactivatedFloor).CurrentValues.SetValues(deactivatedFloor);
-                db.SaveChanges();
+                appDb.Entry(deactivatedFloor).CurrentValues.SetValues(deactivatedFloor);
+                appDb.SaveChanges();
 
                 // when floor is deactivated - rooms on that floor are deactivated too
                 var numRooms = GetAllRooms(floorId);
                 for (int i = 0; i < numRooms.Count; i++)
                 {
-                    numRooms[i].IsActive = false;
-                    db.SaveChanges();
+                    // if room is reserved you can deactivate that room
+                    if(numRooms[i].IsReserved == true)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        numRooms[i].IsActive = false;
+                        appDb.SaveChanges();
+                    }
                 }
                 return true;
             }
@@ -73,53 +81,68 @@ namespace HotelApp.Repository
             if (activateFloor != null)
             {
                 activateFloor.IsActive = true;
-                db.Entry(activateFloor).CurrentValues.SetValues(activateFloor);
-                db.SaveChanges();
+                appDb.Entry(activateFloor).CurrentValues.SetValues(activateFloor);
+                appDb.SaveChanges();
 
                 // when floor is activated - rooms on that floor are activated too
                 var numRooms = GetAllRooms(floorId);
                 for (int i = 0; i < numRooms.Count; i++)
                 {
                     numRooms[i].IsActive = true;
-                    db.SaveChanges();
+                    appDb.SaveChanges();
                 }
                 return true;
             }
             return true;
         }
 
+        public bool UpdateFloor(Floor floor)
+        {
+            var dbFloor = GetFloorById(floor.ID);
+            if(dbFloor != null && dbFloor.NumberOfRooms <= floor.NumberOfRooms)
+            {
+                appDb.Entry(dbFloor).CurrentValues.SetValues(floor);
+                appDb.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
 
         /// for room
         public List<Room> GetAllRooms()
         {
-            return db.Rooms.ToList();
+            return appDb.Rooms.ToList();
         }
 
         public List<Room> GetAllRooms(int floorId)
         {
-            var room = db.Rooms.Where(x => x.FloorId == floorId).ToList();
+            var room = appDb.Rooms.Where(x => x.FloorId == floorId).ToList();
             return room;
         }
 
         public Room GetRoomById(int roomId)
         {
-            return db.Rooms.FirstOrDefault(x => x.ID == roomId);
+            return appDb.Rooms.FirstOrDefault(x => x.ID == roomId);
         }
 
         public bool CreateRoom(Room room, int numOfRooms)
         {
             if (room != null)
             {
+                // all created rooms by default are not reserved
+                room.IsReserved = false;
+
                 int allRooms = GetFloorById(room.FloorId).NumberOfRooms;
-                int submitedRooms = GetAllRooms(room.FloorId).Select(x => x.ID).Count();
-                int avaliableRooms = allRooms - submitedRooms;
+                int adededRooms = GetAllRooms(room.FloorId).Select(x => x.ID).Count();
+                int avaliableRooms = allRooms - adededRooms;
 
                 if (avaliableRooms >= numOfRooms)
                 {
                     for (int i = 0; i < numOfRooms; i++)
                     {
-                        db.Rooms.Add(room);
-                        db.SaveChanges();
+                        appDb.Rooms.Add(room);
+                        appDb.SaveChanges();
                     }
                     return true;
                 }
@@ -129,11 +152,11 @@ namespace HotelApp.Repository
 
         public bool UpdateRoom(Room room)
         {
-            var updateRoom = db.Rooms.FirstOrDefault(x => x.ID == room.ID);
-            if (updateRoom != null)
+            var dbRoom = appDb.Rooms.FirstOrDefault(x => x.ID == room.ID);
+            if (dbRoom != null)
             {
-                db.Entry(updateRoom).CurrentValues.SetValues(room);
-                db.SaveChanges();
+                appDb.Entry(dbRoom).CurrentValues.SetValues(room);
+                appDb.SaveChanges();
                 return true;
             }
             return false;
@@ -141,12 +164,12 @@ namespace HotelApp.Repository
 
         public bool DeactivateRoom(int roomId)
         {
-            var deactivateRoom = db.Rooms.FirstOrDefault(x => x.ID == roomId);
-            if (deactivateRoom != null)
+            var deactivateRoom = appDb.Rooms.FirstOrDefault(x => x.ID == roomId);
+            if (deactivateRoom != null && deactivateRoom.IsReserved != true)
             {
                 deactivateRoom.IsActive = false;
-                db.Entry(deactivateRoom).CurrentValues.SetValues(deactivateRoom);
-                db.SaveChanges();
+                appDb.Entry(deactivateRoom).CurrentValues.SetValues(deactivateRoom);
+                appDb.SaveChanges();
                 return true;
             }
             return false;
@@ -154,22 +177,22 @@ namespace HotelApp.Repository
 
         public bool ActivateRoom(int roomId)
         {
-            var activateRoom = db.Rooms.FirstOrDefault(x => x.ID == roomId);
+            var activateRoom = appDb.Rooms.FirstOrDefault(x => x.ID == roomId);
             if (activateRoom != null)
             {
                 activateRoom.IsActive = true;
-                db.Entry(activateRoom).CurrentValues.SetValues(activateRoom);
-                db.SaveChanges();
+                appDb.Entry(activateRoom).CurrentValues.SetValues(activateRoom);
+                appDb.SaveChanges();
                 return true;
             }
             return false;
         }
 
-        //guests
+
+        // for guests
         public List<ApplicationUser> GetAllGuests()
         {
             var guests = appDb.Users.ToList();
-
             return guests;
         }
     }

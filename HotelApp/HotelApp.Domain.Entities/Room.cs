@@ -12,9 +12,10 @@ namespace HotelApp.Domain.Entities
         public string Description { get; set; }
         public RoomType RoomType { get; set; }
         public bool IsActive { get; set; }
+        public bool IsReserved { get; set; }
 
-        public int FloorId { get; set; } // foreign key
-        public Floor Floor { get; set; }
+        public virtual int FloorId { get; set; } // foreign key
+        public virtual Floor Floor { get; set; }
     }
 
     public enum RoomType

@@ -14,6 +14,7 @@ namespace HotelApp.Domain.Interfaces
         List<Floor> GetAllFloors();
         Floor GetFloorById(int id);
         bool CreateFloor(Floor floor);
+        bool UpdateFloor(Floor floor);
         bool ActivateFloor(int floorId);
         bool DeactivateFloor(int floorId);
 

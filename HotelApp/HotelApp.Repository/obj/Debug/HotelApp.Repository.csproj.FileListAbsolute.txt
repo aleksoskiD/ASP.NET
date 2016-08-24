@@ -2,7 +2,6 @@ C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\HotelApp.Repository.pdb
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\HotelApp.Domain.Entities.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\HotelApp.Domain.Interfaces.dll
-C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\System.Web.Mvc.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\Microsoft.Owin.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\System.Web.Razor.dll
@@ -13,7 +12,6 @@ C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\HotelApp.Domain.Entities.pdb
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\HotelApp.Domain.Interfaces.pdb
-C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\System.Web.Mvc.xml
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\Microsoft.Owin.xml
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Repository\bin\Debug\System.Web.Razor.xml

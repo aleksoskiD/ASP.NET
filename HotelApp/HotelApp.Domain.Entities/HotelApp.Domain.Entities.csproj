@@ -115,12 +115,9 @@
   <ItemGroup>
     <Compile Include="Floor.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201608071302574_InitialCreate.cs" />
-    <Compile Include="Migrations\201608071302574_InitialCreate.Designer.cs">
-      <DependentUpon>201608071302574_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservation.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -128,11 +125,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608071302574_InitialCreate.resx">
-      <DependentUpon>201608071302574_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

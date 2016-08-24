@@ -13,6 +13,6 @@ namespace HotelApp.Domain.Entities
         public int NumberOfRooms { get; set; }
         public bool IsActive { get; set; }
 
-        public List<Room> Rooms { get; set; } // many
+        public virtual List<Room> Rooms { get; set; } // many
     }
 }

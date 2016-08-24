@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HotelApp.Domain.Entities.Room>
-
+@using HotelApp.Domain.Entities
 @{
     ViewBag.Title = "Rooms";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -12,32 +12,29 @@
     </li>
 </ol>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button id="createRoom" class="btn btn-link createRoom">Create Room</button>
 </p>
 <table class="table table-hover">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Floor.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoomType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+        <th>@Html.DisplayNameFor(model => model.Floor.FloorNo)</th>
+        <th>RoomID</th>
+        <th>@Html.DisplayNameFor(model => model.RoomType)</th>
+        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+        <th>@Html.DisplayNameFor(model => model.IsReserved)</th>
+        <th>@Html.DisplayNameFor(model => model.Description)</th>
         <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.Floor.ID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.Floor.FloorNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RoomType)
@@ -46,11 +43,81 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.IsReserved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <button class="btn btn-link editRoom" id="@item.ID">Edit</button>
+            @if (item.IsActive == true)
+            {
+                <button class="btn btn-link deactivateRoom" id="@item.ID">Deactivate</button>
+            }
+            else
+            {
+                <button class="btn btn-link activateRoom" id="@item.ID">Activate</button>
+            }
+
+
         </td>
     </tr>
 }
 
 </table>
+
+
+<div id="editRoom">
+    <form id="roomFormEdit" title="Edit Room">
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-5">Room Id</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="roomIdEdit" name="roomIdEdit" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Room Type</label>
+                <div class="col-md-5">
+                    <select class="form-control" id="roomTypeEdit">
+                        @foreach (RoomType type in Enum.GetValues(typeof(RoomType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Active</label>
+                <div class="col-md-5">
+                    <div class="checkbox">
+                        @Html.CheckBox("IsActiveRoomEdit")
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Reserved</label>
+                <div class="col-md-5">
+                    <div class="checkbox">
+                        @Html.CheckBox("IsReservedRoomEdit")
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="display:none">
+                <label class="control-label col-md-5">FloorID</label>
+                <div class="col-md-5">
+                    @Html.DropDownList("FloorId", null, htmlAttributes: new { @class = "form-control editFloorId"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Description</label>
+                <div class="col-md-5">
+                    <textarea rows="3" class="form-control" id="roomDescriptionEdit"></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -233,6 +233,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\about.jpg" />
+    <Content Include="Images\Front\slider-1.jpg" />
+    <Content Include="Images\Front\slider-2.jpg" />
+    <Content Include="Images\Front\slider-3.jpg" />
+    <Content Include="Scripts\AdminJs\FloorJs.js" />
+    <Content Include="Scripts\AdminJs\RoomJs.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -319,49 +326,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\AUTHORS.txt" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\external\jquery\jquery.js" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_glass_75_d0e5f5_1x400.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_glass_85_dfeffc_1x400.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_217bc0_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_469bdd_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_6da8d5_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_d8e7f3_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\images\ui-icons_f9bd01_256x240.png" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\index.html" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.js" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.min.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.min.js" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.structure.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.structure.min.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.theme.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\jquery-ui.theme.min.css" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\LICENSE.txt" />
-    <Content Include="Theme\redmond\images\animated-overlay.gif" />
-    <Content Include="Theme\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Theme\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
-    <Content Include="Theme\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
-    <Content Include="Theme\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
-    <Content Include="Theme\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Theme\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
-    <Content Include="Theme\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
-    <Content Include="Theme\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
-    <Content Include="Theme\redmond\images\ui-icons_217bc0_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_469bdd_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_6da8d5_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_d8e7f3_256x240.png" />
-    <Content Include="Theme\redmond\images\ui-icons_f9bd01_256x240.png" />
-    <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.css" />
-    <Content Include="Theme\redmond\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -404,15 +368,14 @@
     <Content Include="Views\Admin\Rooms.cshtml" />
     <Content Include="Views\Admin\Guests.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Theme\jquery-ui-1.12.0.custom\package.json" />
+    <Content Include="Views\Admin\Reservations.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\customTheme\fonts\" />
     <Folder Include="Content\customTheme\plugins\flot\" />
     <Folder Include="Content\customTheme\plugins\morris\" />
-    <Folder Include="Images\" />
-    <Folder Include="Scripts\AdminJs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

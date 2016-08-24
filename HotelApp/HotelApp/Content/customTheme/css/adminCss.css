@@ -5,3 +5,14 @@
     background-color: #222;
     color: #777;
 }
+
+.col-md-5 > .checkbox{
+    margin-left: 20px;
+}
+
+
+@media (min-width: 768px) {
+    .navbar-header {
+        float: none;
+    }
+}

@@ -22,9 +22,9 @@ namespace HotelApp
     {
         public Task SendAsync(IdentityMessage message)
         {
-            return configSendGridasync(message);
+            //return configSendGridasync(message);
             // Plug in your email service here to send an email.
-            //return Task.FromResult(0);
+            return Task.FromResult(0);
         }
 
         private Task configSendGridasync(IdentityMessage message)

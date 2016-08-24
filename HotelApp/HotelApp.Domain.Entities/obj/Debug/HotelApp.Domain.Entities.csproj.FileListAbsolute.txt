@@ -35,8 +35,5 @@ C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Enti
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\bin\Debug\System.Web.WebPages.xml
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\obj\Debug\HotelApp.Domain.Entities.Migrations.InitialCreate.resources
-C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\obj\Debug\HotelApp.Domain.Entities.csproj.GenerateResource.Cache
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\obj\Debug\HotelApp.Domain.Entities.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\obj\Debug\HotelApp.Domain.Entities.pdb
-C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Entities\obj\Debug\HotelApp.Domain.Entities.csprojResolveAssemblyReference.cache

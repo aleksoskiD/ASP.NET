@@ -18,18 +18,15 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservations)
+        </th>
+        <th>Action</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -38,16 +35,13 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EmailConfirmed)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.ActionLink(item.Reservations.Count.ToString(),"Reservations", new { id = item.Id })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
