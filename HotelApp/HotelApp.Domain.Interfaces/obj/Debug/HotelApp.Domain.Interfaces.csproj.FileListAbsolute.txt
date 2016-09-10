@@ -25,3 +25,30 @@ C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Inte
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.csprojResolveAssemblyReference.cache
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.dll
 C:\Users\Dac\Documents\Visual Studio 2015\Projects\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\HotelApp.Domain.Interfaces.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\HotelApp.Domain.Interfaces.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\HotelApp.Domain.Entities.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\EntityFramework.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.Mvc.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.Owin.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.Razor.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Owin.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\HotelApp.Domain.Entities.pdb
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\EntityFramework.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.Mvc.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\Microsoft.Owin.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.Razor.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.dll
+C:\Users\Dac\Documents\GitHub\ASP.NET\HotelApp\HotelApp.Domain.Interfaces\obj\Debug\HotelApp.Domain.Interfaces.pdb
