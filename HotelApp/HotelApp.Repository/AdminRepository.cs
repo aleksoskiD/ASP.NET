@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HotelApp.Domain.Entities;
 using HotelApp.Domain.Interfaces;
 using HotelApp.Models;
+using System.Data.Entity;
 
 namespace HotelApp.Repository
 {
@@ -121,9 +122,28 @@ namespace HotelApp.Repository
             return room;
         }
 
+        public List<Room> AllFreeRooms()
+        {
+            var freeRooms = appDb.Rooms.Where(x => x.IsReserved == false).ToList();
+            return freeRooms;
+        }
+        
+        public List<Room> AllReservedRooms()
+        {
+            var reservedRooms = appDb.Rooms.Where(x => x.IsReserved == false).ToList();
+            return reservedRooms;
+        }
+
+
         public Room GetRoomById(int roomId)
         {
             return appDb.Rooms.FirstOrDefault(x => x.ID == roomId);
+        }
+
+        public Room GetRoomByType(RoomType type)
+        {
+            var room = appDb.Rooms.Where(x => x.RoomType == type && x.IsReserved == false && x.IsActive == true).FirstOrDefault();
+            return room;
         }
 
         public bool CreateRoom(Room room, int numOfRooms)
@@ -162,6 +182,34 @@ namespace HotelApp.Repository
             return false;
         }
 
+        public bool ReserveRoom(int roomId)
+        {
+            var room = GetRoomById(roomId);
+            if (room != null && room.IsReserved == false)
+            {
+                room.IsReserved = true;
+                appDb.Entry(room).State = EntityState.Modified;
+                appDb.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool CancelRoom(int roomId)
+        {
+            var room = GetRoomById(roomId);
+            if (room != null)
+            {
+                room.IsReserved = false;
+                appDb.Entry(room).State = EntityState.Modified;
+                appDb.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
         public bool DeactivateRoom(int roomId)
         {
             var deactivateRoom = appDb.Rooms.FirstOrDefault(x => x.ID == roomId);
@@ -194,6 +242,11 @@ namespace HotelApp.Repository
         {
             var guests = appDb.Users.ToList();
             return guests;
+        }
+
+        public ApplicationUser GetGuestById(string id)
+        {
+            return appDb.Users.FirstOrDefault(x => x.Id == id);
         }
     }
 }

@@ -247,6 +247,20 @@
     <Content Include="Content\customTheme\plugins\jquery.js" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -297,6 +311,10 @@
     <Content Include="Images\Front\slider-1.jpg" />
     <Content Include="Images\Front\slider-2.jpg" />
     <Content Include="Images\Front\slider-3.jpg" />
+    <Content Include="Images\Thumbnails\double-large-room.jpg" />
+    <Content Include="Images\Thumbnails\double_room.jpg" />
+    <Content Include="Images\Thumbnails\single-room.jpg" />
+    <Content Include="Scripts\AdminJs\ConfirmDeleteReservationJs.js" />
     <Content Include="Scripts\AdminJs\FloorJs.js" />
     <Content Include="Scripts\AdminJs\RoomJs.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -325,6 +343,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UserJs\ReservationJs.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -370,6 +389,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Reservations.cshtml" />
     <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Reservation\CreateReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

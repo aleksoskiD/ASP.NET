@@ -1,4 +1,6 @@
 ﻿using HotelApp.Domain.Entities;
+using HotelApp.Domain.Entities.ViewModels;
+using HotelApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,13 @@ namespace HotelApp.Domain.Interfaces
     public interface IReservationRepository
     {
         // for reservations
-        List<Reservation> GetAllReservations();
-        List<Reservation> GetReservationsForGuest(string id);
+        List<ReservationViewModel> GetAllReservations();
+        List<ReservationViewModel> GetReservationsForGuest(string id);
         Reservation GetReservationById(int id);
         bool CreateReservation(Reservation reservation);
         bool UpdateReservation(Reservation reservation);
+        bool ConfirmReservation(int id);
         bool DeleteReservation(int id);
+        bool CancelReservation(int id);
     }
 }

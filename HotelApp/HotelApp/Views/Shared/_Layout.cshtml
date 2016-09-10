@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/font-awesome.min.css")
+    @Styles.Render("~/Content/jquery-ui.css")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,14 +41,15 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-    <hr />
     <br />
     <footer>
+        <hr />
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/UserJs/ReservationJs.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

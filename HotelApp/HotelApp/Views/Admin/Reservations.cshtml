@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HotelApp.Domain.Entities.Reservation>
+﻿@model IEnumerable<HotelApp.Domain.Entities.ViewModels.ReservationViewModel>
 
 @{
     ViewBag.Title = "Reservations";
@@ -28,34 +28,77 @@
             @Html.DisplayNameFor(model => model.EndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Guest.UserName)
+            @Html.DisplayNameFor(model => model.GuestName)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>Action</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Guest.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestName)
+            </td>
+            @switch (item.Status)
+                {
+                    case HotelApp.Domain.Entities.BookingStatus.approved:
+                    <td style="color: green; font-weight:700">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.notApproved:
+                    <td style="color:red; font-weight:700">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.pending:
+                    <td style="color:royalblue; font-weight:700">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.cancelled:
+                    <td style="color:black; font-weight:700">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    break;
+            }
 
+            @switch (item.Status)
+                {
+                    case HotelApp.Domain.Entities.BookingStatus.approved:
+                    <td style="color: green; font-weight:700">
+                        <button class="btn btn-danger btn-sm" id="@item.ID">Delete</button>
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.notApproved:
+                    <td style="color:red; font-weight:700">
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.pending:
+                    <td style="color:royalblue; font-weight:700">
+                        <button class="btn btn-success btn-sm" id="@item.ID">Confirm</button>
+                    </td>
+                    break;
+                case HotelApp.Domain.Entities.BookingStatus.cancelled:
+                    <td style="color:black; font-weight:700">
+                    </td>
+                    break;
+            }
+        </tr>
+    }
 </table>

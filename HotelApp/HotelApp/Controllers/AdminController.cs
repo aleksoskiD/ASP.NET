@@ -61,6 +61,14 @@ namespace HotelApp.Controllers
         public ActionResult Index()
         {
             ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
+            ViewBag.TotalFloors = _adminRepository.GetAllFloors().Count;
+            ViewBag.TotalRooms = _adminRepository.GetAllRooms().Count;
+            ViewBag.TotalGuests = _adminRepository.GetAllGuests().Count;
+
+            var reservations = _reservationRepository.GetAllReservations();
+            ViewBag.TotalReservations = reservations.Count;
+            ViewBag.Reservations = reservations.Where(x=>x.Status == BookingStatus.approved).Take(5);
+            ViewBag.PendingReserations = reservations.Where(x => x.Status == BookingStatus.pending).Take(5);
             return View();
         }
 
@@ -143,18 +151,44 @@ namespace HotelApp.Controllers
 
 
         // ROOMS
-        public ActionResult Rooms(int? id)
+        public ActionResult Rooms(int? id, string sort)
         {
-            if(id != null)
+            List<Room> rooms;
+            if (id != null)
             {
                 /// for creating room
                 ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-                return View(_adminRepository.GetAllRooms().Where(x => x.FloorId == id));
+
+                switch (sort)
+                {
+                    case "free":
+                        rooms= _adminRepository.AllFreeRooms().Where(x => x.FloorId == id).ToList();
+                        break;
+                    case "reserved":
+                        rooms = _adminRepository.AllReservedRooms().Where(x => x.FloorId == id).ToList();
+                        break;
+                    default:
+                        rooms = _adminRepository.GetAllRooms().Where(x => x.FloorId == id).ToList();
+                        break;
+                }
+                return View(rooms);
             }
             /// for creating room
             ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
 
-            return View(_adminRepository.GetAllRooms());
+            switch (sort)
+            {
+                case "free":
+                    rooms = _adminRepository.AllFreeRooms().ToList();
+                    break;
+                case "reserved":
+                    rooms = _adminRepository.AllReservedRooms().ToList();
+                    break;
+                default:
+                    rooms = _adminRepository.GetAllRooms().ToList();
+                    break;
+            }
+            return View(rooms);
         }
 
         [HttpPost]
@@ -231,6 +265,8 @@ namespace HotelApp.Controllers
             return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
 
+
+
         // RESERVATIONS
         public ActionResult Reservations(string id)
         {
@@ -247,24 +283,36 @@ namespace HotelApp.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult ConfirmReservation(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_reservationRepository.ConfirmReservation(id))
+                {
+                    return Json(new { status = true }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { status = false }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult DeleteReservation(int id)
         {
             if (ModelState.IsValid)
             {
                 if (_reservationRepository.DeleteReservation(id))
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { status = true }, JsonRequestBehavior.AllowGet);
                 }
             }
-
-            return Json(new { success = false}, JsonRequestBehavior.AllowGet);
+            return Json(new { status = false}, JsonRequestBehavior.AllowGet);
         }
 
         // GUESTS
         public ActionResult Guests()
         {
             ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-            string roleName = "abbdf563-a224-4052-87ed-faf29d1891b5";
+            string roleName = "2273c79f-1efe-4a28-800c-7f80395b5e10";
             var guests = _adminRepository.GetAllGuests().Where(x => x.Roles.Any(z => z.RoleId == roleName)).ToList();
 
             return View(guests);
@@ -277,7 +325,7 @@ namespace HotelApp.Controllers
             return View();
         }
 
-        // POST: /Admin/Login
+        // POST: /Guest/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -307,7 +355,7 @@ namespace HotelApp.Controllers
         }
 
         //
-        // POST: /Admin/LogOff
+        // POST: /Guest/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

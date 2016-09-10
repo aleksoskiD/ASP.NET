@@ -22,5 +22,6 @@ namespace HotelApp.Domain.Entities
     {
         singleRoom = 1,
         doubleRoom = 2,
+        doubleLargeRoom = 3
     }
 }

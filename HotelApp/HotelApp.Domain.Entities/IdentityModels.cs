@@ -37,6 +37,10 @@ namespace HotelApp.Models
         public DbSet<Floor> Floors { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
+        public System.Data.Entity.DbSet<HotelApp.Domain.Entities.ViewModels.ReservationViewModel> ReservationViewModels { get; set; }
+
+        // public System.Data.Entity.DbSet<HotelApp.Domain.Entities.ViewModels.ReservationViewModel> ReservationViewModels { get; set; }
     }
 
     //public class HotelContext : DbContext

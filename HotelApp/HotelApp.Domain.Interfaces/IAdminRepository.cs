@@ -21,13 +21,18 @@ namespace HotelApp.Domain.Interfaces
         //for room
         List<Room> GetAllRooms();
         List<Room> GetAllRooms(int floorId);
+        List<Room> AllFreeRooms();
+        List<Room> AllReservedRooms();
         Room GetRoomById(int id);
+        Room GetRoomByType(RoomType type);
         bool CreateRoom(Room room, int numOfRooms);
         bool UpdateRoom(Room room);
         bool ActivateRoom(int roomId);
+        bool ReserveRoom(int roomId);
         bool DeactivateRoom(int roomId);
 
         // for guests
         List<ApplicationUser> GetAllGuests();
+        ApplicationUser GetGuestById(string id);
     }
 }

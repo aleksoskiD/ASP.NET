@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: brown;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -40,10 +42,21 @@ footer {
     text-align: center;
 }
 
-.thumbnail > img {
+.thumbnail{
+    background-color: #e6eeff;
+}    
+
+
+.thumbnail > .img-responsive {
     width:100%;
     height:500px;
 }
+
+.thumbnail_image > img{
+    width: 100%;
+    height: 220px;
+}
+
 
 /* Contact Page */
 
@@ -64,4 +77,29 @@ footer {
     #map-outer {
         height: 650px;
     }
+}
+
+.description{
+    background-color: black;
+    color: aqua;
+    width: 150px;
+}
+
+.reservation {
+    background-color: #e6eeff;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding-bottom: 25px;
+}
+
+.reservation > p{
+    margin: 25px 0px;
+}
+
+.reservation > h2{
+    font-weight: 600;
+}
+/* Footer */
+footer{
+        color: antiquewhite;
 }

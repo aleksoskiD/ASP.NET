@@ -121,6 +121,7 @@
     <Compile Include="Room.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ReservationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

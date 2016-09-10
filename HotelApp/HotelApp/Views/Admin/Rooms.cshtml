@@ -11,9 +11,19 @@
         <i class="fa fa-dashboard"></i><a href="~/Admin"> Dashboard</a>&nbsp / &nbsp <i class="fa fa-bed"></i> Rooms
     </li>
 </ol>
-<p>
+
     <button id="createRoom" class="btn btn-link createRoom">Create Room</button>
-</p>
+@* da se napraj za sortiranje *@
+<div class="dropdown" style="display:inline">
+    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+        Filter  &nbsp  &nbsp
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" style="background-color:azure"> 
+        <li><a href="/Admin/Rooms/"+Request.Params["id"]+"free">Free rooms</a></li>
+        <li><a href="/Admin/Rooms/"+Request.Params>Reserved rooms</a></li>
+    </ul>
+</div>
 <table class="table table-hover">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Floor.FloorNo)</th>
