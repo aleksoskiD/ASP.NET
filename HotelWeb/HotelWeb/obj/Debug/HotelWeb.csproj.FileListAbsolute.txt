@@ -1,0 +1,162 @@
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\HotelWeb.dll.config
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\HotelWeb.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\HotelWeb.pdb
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Antlr3.Runtime.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\EntityFramework.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Newtonsoft.Json.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Owin.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Helpers.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Mvc.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Optimization.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Razor.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\WebGrease.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Helpers.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Mvc.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Optimization.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.Razor.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Newtonsoft.Json.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Antlr3.Runtime.pdb
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\EntityFramework.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.dll
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.pdb
+C:\Users\dako\Documents\Visual Studio 2013\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.csprojResolveAssemblyReference.cache
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\HotelWeb.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\HotelWeb.pdb
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Antlr3.Runtime.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\EntityFramework.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Newtonsoft.Json.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Owin.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Helpers.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Mvc.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Optimization.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Razor.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\WebGrease.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Helpers.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Mvc.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Optimization.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.Razor.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Newtonsoft.Json.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Antlr3.Runtime.pdb
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\EntityFramework.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.dll
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.pdb
+C:\Users\Dac\Documents\Visual Studio 2012\Projects\HotelWeb\HotelWeb\obj\Debug\HotelWeb.csprojResolveAssemblyReference.cache
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\HotelWeb.dll.config
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\HotelWeb.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\HotelWeb.pdb
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Antlr3.Runtime.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\EntityFramework.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Newtonsoft.Json.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Owin.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Helpers.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Mvc.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Optimization.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Razor.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\WebGrease.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\EntityFramework.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\EntityFramework.SqlServer.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Helpers.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Mvc.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Optimization.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.Razor.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.Deployment.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\System.Web.WebPages.Razor.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Newtonsoft.Json.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Antlr3.Runtime.pdb
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Facebook.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.OAuth.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Google.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.Twitter.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\obj\Debug\HotelWeb.csprojResolveAssemblyReference.cache
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\obj\Debug\HotelWeb.dll
+D:\FAX\Seminarska-daniel\HotelWeb\HotelWeb\obj\Debug\HotelWeb.pdb

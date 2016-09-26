@@ -1,0 +1,141 @@
+﻿@model HotelWeb.Models.SelectReservationModel
+@{
+    ViewBag.Title = "Резервирај";
+}
+
+
+
+<div class="top-page clearfix">
+    <div class="page-title pull-left">
+        <h3 class="pull-left"><strong>Резервирај</strong> <small>соба</small></h3>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Select", "Reservation", FormMethod.Post, new { id = "search-filters" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="events-filter clearfix">
+
+                <div class="col-md-4 well">
+                    <div class="control-label c-gray col-md-5"><h4>Корисник</h4></div>
+                    <div class="col-md-7">
+                        <h4><label class="label label-success "> <strong> @User.Identity.Name </strong> </label></h4>
+                    </div>
+                </div>             
+
+            </div>
+        </div>
+
+    </div>
+    
+    <hr />
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="events-filter clearfix">
+
+                <div class="col-md-4">
+                    <div class="control-label c-gray col-md-5">Од датум</div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(x => x.FromDate, new { @class = "from-date form-control", data_date_format = "dd/mm/yyyy", @readonly = "readonly" })<span class="add-on"><i class="icon-th"></i></span>
+                        @Html.ValidationMessageFor( x => x.FromDate)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="control-label c-gray col-md-5">До датум</div>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(x => x.ToDate, new { @class = "to-date form-control", data_date_format = "dd/mm/yyyy", @readonly = "readonly" })<span class="add-on"><i class="icon-th"></i></span>
+                        @Html.ValidationMessageFor(x => x.ToDate)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <hr />
+
+    <!-- Display Rooms for selection as radio buttons -->    
+    foreach (var room in Model.Rooms)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="events-filter clearfix">
+                    <div class="col-md-4">
+
+                            <input type="radio"
+                                   id="r(@room.Id)"
+                                   name="RoomId"
+                                   value="@room.Id"
+                                   @(Model.RoomId == room.Id ? "checked" : "") />
+                            <label for="r(@room.Id)">@room.Name</label>
+
+                            <div style="margin-left:17px;">
+                                <p>
+                                    <small>Цена: @room.Price MKD</small>
+                                </p>
+                                <p style="color:#808080">
+                                    @room.Descirption
+                                </p>
+                            </div>
+                          
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+
+            <input type="submit" class="btn btn-success" value="Резервирај »" />
+
+        </div>
+    </div>
+}
+
+
+
+@section scripts{
+
+    <link href="@Url.Content("~/scripts/plugins/bootstrap-datepicker/datepicker.css")" rel="stylesheet">
+    <script src="@Url.Content("~/scripts/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js")"></script>
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+
+            $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+            $('.from-date').datepicker({
+                format: "dd/mm/yyyy"
+            }).on('changeDate', function (e) {
+                $('#FromDate').val($(this).val());
+            }).on('clearDate', function (e) {
+                $('#FromDate').val('');
+            });
+
+
+
+            $('.to-date').datepicker({
+                format: "dd/mm/yyyy"
+            }).on('changeDate', function (e) {
+                $('#ToDate').val($(this).val());
+            }).on('clearDate', function (e) {
+                $('#ToDate').val('');
+            });
+
+        });
+
+    </script>
+}

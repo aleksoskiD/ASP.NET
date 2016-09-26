@@ -1,0 +1,67 @@
+﻿@model HotelWeb.Models.ReservationsModel
+@{
+    ViewBag.Title = "Мои резервации";
+}
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        <h2 class="page-header">
+            Мои резервации
+            <a href="@Url.Action("Select","Reservation")" class="btn btn-warning pull-right">Нова резервација »</a>
+        </h2>  
+    </div>
+</div>
+
+@if (Model != null && Model.Items != null && Model.Items.ToList().Count > 0)
+{
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Соба</th>
+                        <th>Услуга</th>
+                        <th>Цена</th>
+                        <th>Од датум </th>
+                        <th>До датум</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Items)
+                    {
+                        <tr>
+                            <td>@r.Id.ToString()</td>
+                            <td> <label class="label label-info"><strong>@r.Room.Name.ToUpper()</strong></label> </td>
+                            <td>@r.Room.Descirption</td>
+                            <td>@r.Room.Price.ToString() MKD</td>
+                            <td>@r.FromDate.ToString("dd-MM-yyyy")</td>
+                            <td>@r.ToDate.ToString("dd-MM-yyyy")</td>
+                            <td>
+                                <a href="@Url.Action("Delete", "Reservation", new { id = r.Id })" class="btn btn-danger"><i class="fa fa-trash-o"> </i> Избриши</a>
+                            </td>
+                        </tr>
+                    }
+
+            </table>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-offset-1 col-md-9">
+
+            <div class="well">
+                <h4>Вие немате резервации!</h4>
+                <a href="@Url.Action("Select", "Reservation")" class="btn btn-warning"> Направи резервација »</a> 
+            </div>
+
+
+        </div>
+    </div>
+
+}
