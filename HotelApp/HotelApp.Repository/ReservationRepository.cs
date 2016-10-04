@@ -36,7 +36,7 @@ namespace HotelApp.Repository
         {
 
             List<ReservationViewModel> formatedReservations = new List<ReservationViewModel>();
-            var reservations = appDb.Reservations.Where(x => x.GuestId == id && x.EndDate > DateTime.Now).OrderByDescending(x=>x.DateCreated).ToList();
+            var reservations = appDb.Reservations.Where(x => x.GuestId == id).OrderByDescending(x=>x.DateCreated).ToList();
 
             formatedReservations = reservations.ClientReservations();
             return formatedReservations;

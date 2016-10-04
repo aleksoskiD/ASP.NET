@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using HotelApp.Models;
+using HotelApp.Domain.Entities.ViewModels;
 
 namespace HotelApp.Controllers
 {
@@ -84,12 +85,14 @@ namespace HotelApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_adminRepository.CreateFloor(floor))
+                FloorViewModel f = _adminRepository.CreateFloor(floor);
+
+                if (f != null)
                 {
-                    return Json(new { succsess = true }, JsonRequestBehavior.AllowGet);
+                    return Json( f, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { succsess = false }, JsonRequestBehavior.AllowGet);
+            return Json( false , JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -97,12 +100,13 @@ namespace HotelApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_adminRepository.DeactivateFloor(FloorId))
+                FloorViewModel f = _adminRepository.DeactivateFloor(FloorId);
+                if (f != null)
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json( f, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json( null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -110,22 +114,24 @@ namespace HotelApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_adminRepository.ActivateFloor(FloorId))
+                FloorViewModel f = _adminRepository.ActivateFloor(FloorId);
+                if (f != null)
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(f, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(null, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult UpdateFloor(Floor floor)
         {
+            FloorViewModel f = _adminRepository.UpdateFloor(floor);
             if (ModelState.IsValid)
             {
-                if (_adminRepository.UpdateFloor(floor))
+                if (f != null)
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = f }, JsonRequestBehavior.AllowGet);
                 }
             }
             return Json( false , JsonRequestBehavior.AllowGet);
@@ -167,6 +173,12 @@ namespace HotelApp.Controllers
                     case "reserved":
                         rooms = _adminRepository.AllReservedRooms().Where(x => x.FloorId == id).ToList();
                         break;
+                    case "active":
+                        rooms = _adminRepository.AllActiveRooms().Where(x => x.FloorId == id).ToList();
+                        break;
+                    case "inactive":
+                        rooms = _adminRepository.AllInactiveRooms().Where(x => x.FloorId == id).ToList();
+                        break;
                     default:
                         rooms = _adminRepository.GetAllRooms().Where(x => x.FloorId == id).ToList();
                         break;
@@ -183,6 +195,12 @@ namespace HotelApp.Controllers
                     break;
                 case "reserved":
                     rooms = _adminRepository.AllReservedRooms().ToList();
+                    break;
+                case "active":
+                    rooms = _adminRepository.AllActiveRooms().ToList();
+                    break;
+                case "inactive":
+                    rooms = _adminRepository.AllInactiveRooms().ToList();
                     break;
                 default:
                     rooms = _adminRepository.GetAllRooms().ToList();
@@ -268,18 +286,54 @@ namespace HotelApp.Controllers
 
 
         // RESERVATIONS
-        public ActionResult Reservations(string id)
+        public ActionResult Reservations(string id, string sort)
         {
+            List<ReservationViewModel> reservations;
             if(id != null )
             {
+                switch (sort)
+                {
+                    case "approved":
+                        reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.approved).ToList();
+                        break;
+                    case "notApproved":
+                        reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.notApproved).ToList();
+                        break;
+                    case "pending":
+                        reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.pending).ToList();
+                        break;
+                    case "cancelled":
+                        reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.cancelled).ToList();
+                        break;
+                    default:
+                        reservations = _reservationRepository.GetReservationsForGuest(id);
+                        break;
+                }
                 ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-                return View(_reservationRepository.GetReservationsForGuest(id));
+                return View(reservations);
             }
             else
             {
+                switch (sort)
+                {
+                    case "approved":
+                        reservations = _reservationRepository.GetAllReservations().Where(x => x.Status == BookingStatus.approved).ToList();
+                        break;
+                    case "notApproved":
+                        reservations = _reservationRepository.GetAllReservations().Where(x => x.Status == BookingStatus.notApproved).ToList();
+                        break;
+                    case "pending":
+                        reservations = _reservationRepository.GetAllReservations().Where(x => x.Status == BookingStatus.pending).ToList();
+                        break;
+                    case "cancelled":
+                        reservations = _reservationRepository.GetAllReservations().Where(x => x.Status == BookingStatus.cancelled).ToList();
+                        break;
+                    default:
+                        reservations = _reservationRepository.GetAllReservations();
+                        break;
+                }
                 ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-                var c = _reservationRepository.GetAllReservations();
-                return View(c);
+                return View(reservations);
             }
         }
 
@@ -312,8 +366,7 @@ namespace HotelApp.Controllers
         public ActionResult Guests()
         {
             ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-            string roleName = "2273c79f-1efe-4a28-800c-7f80395b5e10";
-            var guests = _adminRepository.GetAllGuests().Where(x => x.Roles.Any(z => z.RoleId == roleName)).ToList();
+            var guests = _adminRepository.GetAllGuests();
 
             return View(guests);
         }

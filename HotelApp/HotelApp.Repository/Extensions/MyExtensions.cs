@@ -30,5 +30,11 @@ namespace HotelApp.Repository.Extensions
             }
             return formatedReservations;
         }
+
+        public static List<FloorViewModel> ClientFloors(this List<Floor> floors)
+        {
+            List<FloorViewModel> f = new List<FloorViewModel>();
+            return f;
+        }
     }
 }

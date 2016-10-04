@@ -120,6 +120,7 @@
     <Compile Include="Reservation.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\FloorViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
   </ItemGroup>

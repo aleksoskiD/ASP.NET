@@ -19,11 +19,9 @@
         buttons:
         {
             "Add": function () {
-                var floorNum = $("#floorNo").val();
                 var roomsQuantity = $("#roomsQuantity").val();
                 var isActive = $("#IsActiveFloor").is(':checked');
                 var floor = {
-                    FloorNo: floorNum,
                     NumberOfRooms: roomsQuantity,
                     IsActive: isActive
                 }
@@ -34,12 +32,25 @@
                         data: floor,
                         success: function (status) {
                             // alert("done");
-                            window.location.reload();
+                            var tt = status;
+                            var id = status.ID;
+                            var floorNo = status.FloorNo;
+                            var numOfRooms = status.NumberOfRooms;
+                            var isActive = status.IsActive;
+
+                            if (status != false) {
+                               // AppendFloor(status);
+                                window.location.reload();
+                                alert("done");
+                            }
+
+                            //window.location.reload();
+                            alert("fail");
                             $("#floorForm").dialog("close");
                         },
                         error: function () {
-                            // alert("fail");
-                            window.location.reload();
+                             alert("fail");
+                            //window.location.reload();
                             $("#floorForm").dialog("close");
                         }
                     });
@@ -52,21 +63,21 @@
         }
     });
 
-
     // Deactivate Floor
-    $(".deactivateFloor").click(function (event) {
-        var floorId = event.currentTarget.id;
-        $.ajax({
+   $(".deactivateFloor").click(function (event) {
+       var floorId = event.currentTarget.id;
+       $.ajax({
             type: "POST",
             url: "/Admin/DeactivateFloor",
             data: {FloorId:floorId},
             success: function (status) {
-                 alert("done");
+                if (status == null) {
+                    alert("fail");
+                }
                 window.location.reload();
             },
             error: function () {
                  alert("fail");
-                window.location.reload();
             }
         });
         //alert("Deactivate Floor. ID = " + id);
@@ -81,17 +92,18 @@
             url: "/Admin/ActivateFloor",
             data: { FloorId: floorId },
             success: function (status) {
-                alert("done");
+                if (status == false)
+                {
+                    alert("fail");
+                }
                 window.location.reload();
             },
             error: function () {
                 alert("fail");
-                window.location.reload();
             }
         });
         //alert("Deactivate Floor. ID = " + id);
     });
-
 
     // Edit Floor
     $(".editFloor").click(function (event) {

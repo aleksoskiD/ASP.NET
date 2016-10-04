@@ -21,7 +21,7 @@
                     alert("fail");
                 } else {
                     alert("done");
-                    window.location.href = "Index/" + guestId;
+                    window.location.replace("/Reservation/Index/" + guestId);
                 }
             },
             error: function (status) {
@@ -50,5 +50,11 @@
                 alert("fail");
             }
         });
+    });
+
+    $("#searchDate").click(function () {
+        var startDate = $("#startDateSearch").val();
+        var endDate = $("#endDateSearch").val();
+
     });
 });

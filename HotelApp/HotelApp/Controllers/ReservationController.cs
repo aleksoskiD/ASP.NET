@@ -17,11 +17,29 @@ namespace HotelApp.Controllers
         private IReservationRepository _reservationRepository = new ReservationRepository();
 
         // GET: Reservation
-        public ActionResult Index(string id)
+        public ActionResult Index(string id, string sort, DateTime? startDate, DateTime? endDate)
         {
             ViewBag.FloorId = new SelectList(_adminRepository.GetAllFloors(), "ID", "FloorNo");
-            var c = _reservationRepository.GetReservationsForGuest(id);
-            return View(c);
+            List<ReservationViewModel> reservations;
+            switch (sort)
+            {
+                case "approved":
+                    reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.approved).ToList();
+                    break;
+                case "notApproved":
+                    reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.notApproved).ToList();
+                    break;
+                case "pending":
+                    reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.pending).ToList();
+                    break;
+                case "cancelled":
+                    reservations = _reservationRepository.GetReservationsForGuest(id).Where(x => x.Status == BookingStatus.cancelled).ToList();
+                    break;
+                default:
+                    reservations = _reservationRepository.GetReservationsForGuest(id);
+                    break;
+            }
+            return View(reservations);
         }
 
         public JsonResult CancelReservation(int id)

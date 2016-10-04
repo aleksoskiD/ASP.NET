@@ -37,6 +37,14 @@ textarea {
     width:100%;
 }
 
+.custom_thumbnail{
+    padding-top: 10px;
+}
+
+.options{
+    margin: 20px 0px;
+}
+
 
 footer {
     text-align: center;

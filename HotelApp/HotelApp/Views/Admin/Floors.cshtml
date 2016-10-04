@@ -1,5 +1,4 @@
-﻿@model IEnumerable<HotelApp.Domain.Entities.Floor>
-@using HotelApp.Domain.Entities
+﻿@model IEnumerable<HotelApp.Domain.Entities.ViewModels.FloorViewModel>
 
 @{
     ViewBag.Title = "Floors";
@@ -13,57 +12,75 @@
     </li>
 </ol>
 <p>
-    @*@Html.ActionLink("Create Floor", "CreateFloor")*@
-    @*<a href="~/Admin/CreateFloor"><h4>Create Floor</h4></a>*@
     <button id="createFloor" class="btn btn-link createFloor">Create Floor</button>
 </p>
 <br />
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FloorNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfRooms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+
+<table class="table table-hover floorTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FloorNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ForEnter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Free)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reserved)
+        </th>
+        <th>Actions</th>
+    </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td style="display:none">
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FloorNo)
-        </td>
-        <td>
-            @if (item.IsActive == true)
-            {
-                @Html.ActionLink(item.NumberOfRooms.ToString(), "Rooms", "Admin", new { id = item.ID }, null) <i class="fa fa-bed" aria-hidden="true"></i>
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.NumberOfRooms) <i class="fa fa-bed" aria-hidden="true"></i>
-            }           
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-           <button class="btn btn-link editFloor" id="@item.ID">Edit</button>
-            @if (item.IsActive)
+            @if (item.IsActive == true)
             {
-                <button class="btn btn-link deactivateFloor" id="@item.ID">Deactivate</button>
+                @Html.ActionLink(item.TotalRooms.ToString(), "Rooms", "Admin", new { id = item.ID }, null) <i class="fa fa-bed" aria-hidden="true"></i>
             }
             else
             {
-                <button class="btn btn-link activateFloor" id="@item.ID">Activate</button>
+                @Html.DisplayFor(modelItem => item.TotalRooms) <i class="fa fa-bed" aria-hidden="true"></i>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ForEnter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Free)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reserved)
+        </td>
+        <td>
+            <button class="btn btn-link editFloor" id=@item.ID >Edit</button>
+            @if (item.IsActive)
+            {
+                <button class="btn btn-link deactivateFloor" id=@item.ID >Deactivate</button>
+            }
+            else
+            {
+                <button class="btn btn-link activateFloor" id=@item.ID >Activate</button>
             }
 
         </td>
@@ -72,19 +89,18 @@
 
 </table>
 
-
 <div id="editFloor">
     <form id="floorFormEdit" title="Update Floor">
         @Html.AntiForgeryToken()
         <br />
         <br />
         <div class="form-horizontal">
-            <div class="form-group">
+            @*<div class="form-group">
                 <label class="control-label col-md-5">Floor Number</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" id="floorNoEdit" name="floorNoEdit" readonly/>
+                    <input type="text" class="form-control" id="floorNoEdit" name="floorNoEdit" readonly />
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label class="control-label col-md-5">Number of Rooms</label>
                 <div class="col-md-5">

@@ -20,11 +20,14 @@
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" style="background-color:azure"> 
-        <li><a href="/Admin/Rooms/"+Request.Params["id"]+"free">Free rooms</a></li>
-        <li><a href="/Admin/Rooms/"+Request.Params>Reserved rooms</a></li>
+        <li>@Html.ActionLink("-- -- -- -- --", "Rooms", "Admin", new { id = ViewContext.RouteData.Values["id"]}, null)</li>
+        <li>@Html.ActionLink("Free rooms", "Rooms", "Admin", new { id = ViewContext.RouteData.Values["id"], sort = "free" }, null)</li>    
+        <li>@Html.ActionLink("Reserved rooms", "Rooms", "Admin", new { id = ViewContext.RouteData.Values["id"], sort = "reserved" }, null)</li>
+        <li>@Html.ActionLink("Active rooms", "Rooms", "Admin", new { id = ViewContext.RouteData.Values["id"], sort = "active" }, null)</li>
+        <li>@Html.ActionLink("Inactive rooms", "Rooms", "Admin", new { id = ViewContext.RouteData.Values["id"], sort = "inactive" }, null)</li>
     </ul>
 </div>
-<table class="table table-hover">
+<table class="table table-hover" style="margin-top:10px">
     <tr>
         <th>@Html.DisplayNameFor(model => model.Floor.FloorNo)</th>
         <th>RoomID</th>
@@ -58,6 +61,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
+       @if (item.IsReserved == false)
+       {
         <td>
             <button class="btn btn-link editRoom" id="@item.ID">Edit</button>
             @if (item.IsActive == true)
@@ -68,9 +73,23 @@
             {
                 <button class="btn btn-link activateRoom" id="@item.ID">Activate</button>
             }
-
-
         </td>
+       }
+       else
+       {
+        <td>
+            <button class="btn btn-link editRoom" id="@item.ID" disabled="disabled">Edit</button>
+            @if (item.IsActive == true)
+            {
+                <button class="btn btn-link deactivateRoom" id="@item.ID" disabled="disabled">Deactivate</button>
+            }
+            else
+            {
+                <button class="btn btn-link activateRoom" id="@item.ID" disabled="disabled">Activate</button>
+            }
+        </td>
+       }
+       
     </tr>
 }
 

@@ -7,75 +7,120 @@
 
 <div class="col-md-11 reservation">
     <h2>My Reservations</h2>
-    <p>
-        @Html.ActionLink("Create New", "CreateReservation", null, new { @class = "btn btn-success"})
+    <p style="display:inline; margin-right:5px">
+        @Html.ActionLink("Create New", "CreateReservation", null, new { @class = "btn btn-success btn-sm" })
     </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomType)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="dropdown" style="display:inline">
+        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+            Filter  &nbsp  &nbsp
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="background-color:azure">
+            <li>@Html.ActionLink("-- -- -- -- --", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"] }, null)</li>
+            <li>@Html.ActionLink("Approved", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"], sort = "approved" }, null)</li>
+            <li>@Html.ActionLink("Notapprved", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"], sort = "notApproved" }, null)</li>
+            <li>@Html.ActionLink("Pending", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"], sort = "pending" }, null)</li>
+            <li>@Html.ActionLink("Cancelled", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"], sort = "cancelled" }, null)</li>
+        </ul>
+    </div>
+    @*za filtriranje po datum*@
+    <form class="form-inline" style="float:right" method="get" action="~/Reservation/Index">
+        <div class="col-md-4 form-group">
+            <input type="text" id="startDateSearch" class="form-control" name="startDate" placeholder="start date">
+        </div>
+        <div class="col-md-4 form-group">
+            <input type="text" id="endDateSearch" class="form-control" name="endDate" placeholder="end date"/>
+        </div>
+        <div class="col-md-2 form-group" style="display:inline">
+            <input type="submit" value="Search" class="btn btn-sm btn-default" id="searchDate"/>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped" style="margin-top:10px">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                @switch (item.Status)
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    @switch (item.Status)
                 {
                     case HotelApp.Domain.Entities.BookingStatus.approved:
-                        <td style="color: green; font-weight:700">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
+                            <td style="color: green; font-weight:700">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
                         break;
                     case HotelApp.Domain.Entities.BookingStatus.notApproved:
-                        <td style="color:red; font-weight:700">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
+                            <td style="color:red; font-weight:700">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
                         break;
                     case HotelApp.Domain.Entities.BookingStatus.pending:
-                        <td style="color:royalblue; font-weight:700">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
+                            <td style="color:royalblue; font-weight:700">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
                         break;
                     case HotelApp.Domain.Entities.BookingStatus.cancelled:
-                        <td style="color:black; font-weight:700">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
+                            <td style="color:black; font-weight:700">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
                         break;
                 }
-                <td>
-                    @Html.DisplayFor(modelItem => item.RoomType)
-                </td>
-                @if (item.Status != HotelApp.Domain.Entities.BookingStatus.cancelled && item.Status != HotelApp.Domain.Entities.BookingStatus.notApproved)
-                {
                     <td>
-                        <button class="btn btn-danger btn-sm cancelReservation" id="@item.ID">Cancel</button>
+                        @Html.DisplayFor(modelItem => item.RoomType)
                     </td>
+                    @if (item.Status != HotelApp.Domain.Entities.BookingStatus.cancelled && item.Status != HotelApp.Domain.Entities.BookingStatus.notApproved)
+                {
+                        <td>
+                            <button class="btn btn-danger btn-sm cancelReservation" id="@item.ID">Cancel</button>
+                        </td>
                 }
-            </tr>
+                </tr>
         }
-
-    </table>
+        </table>
+    </div>
 </div>
+
+
+@section scripts{
+
+
+
+    <script src="~/Scripts/jquery-ui-1.12.0.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#startDateSearch").datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+            $("#endDateSearch").datepicker({
+                dateFormat: "dd.mm.yy"
+            });
+        });
+    </script>
+}

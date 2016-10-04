@@ -7,6 +7,7 @@ using HotelApp.Domain.Entities;
 using HotelApp.Domain.Interfaces;
 using HotelApp.Models;
 using System.Data.Entity;
+using HotelApp.Domain.Entities.ViewModels;
 
 namespace HotelApp.Repository
 {
@@ -16,9 +17,20 @@ namespace HotelApp.Repository
         private ApplicationDbContext appDb = new ApplicationDbContext();
 
         // for floor
-        public List<Floor> GetAllFloors()
+        public List<FloorViewModel> GetAllFloors()
         {
-            return appDb.Floors.ToList();
+            List<Floor> dbFloors = appDb.Floors.OrderBy(x => x.FloorNo).ToList();
+
+            List<FloorViewModel> fvms = new List<FloorViewModel>();
+            FloorViewModel floor = new FloorViewModel();
+            foreach (var item in dbFloors)
+            {
+                floor = FloorToViewModel(item);
+                fvms.Add(floor);
+                floor = null;
+            }
+
+            return fvms;
         }
 
         public Floor GetFloorById(int id)
@@ -26,88 +38,120 @@ namespace HotelApp.Repository
             return appDb.Floors.FirstOrDefault(x => x.ID == id);
         }
 
-        public bool CreateFloor(Floor floor)
+        private FloorViewModel GetFloor(Floor floor)
         {
-            var neso = GetAllFloors().Select(x => x.FloorNo).ToList();
-
-            if (floor != null && floor.FloorNo != 0)
-            {
-                for (int i = 0; i < neso.Count; i++)
-                {
-                    if (neso[i] == floor.FloorNo)
-                    {
-                        return false;
-                    }
-                }
-                appDb.Floors.Add(floor);
-                appDb.SaveChanges();
-                return true;
-            }
-            return false;
+            Floor fl = appDb.Floors.First(x => x.FloorNo == floor.FloorNo && floor.IsActive == floor.IsActive && floor.NumberOfRooms == floor.NumberOfRooms);
+            FloorViewModel fvm = FloorToViewModel(fl);
+            return fvm;
         }
 
-        public bool DeactivateFloor(int floorId)
+        public FloorViewModel CreateFloor(Floor floor)
         {
-            var deactivatedFloor = GetFloorById(floorId);
-            if (deactivatedFloor != null)
+            Floor lastFloor;
+            try
+            {
+                lastFloor = appDb.Floors.OrderByDescending(x => x.FloorNo).FirstOrDefault();
+                floor.FloorNo = lastFloor.FloorNo + 1;
+            }
+            catch
+            {
+                floor.FloorNo = 1;
+            }
+
+            appDb.Floors.Add(floor);
+            appDb.SaveChanges();
+
+            FloorViewModel f = GetFloor(floor);
+            return f;
+        }
+
+        public FloorViewModel DeactivateFloor(int floorId)
+        {
+            var dbFloor = GetFloorById(floorId);
+            if (dbFloor != null)
             {
                 // deactivate floor
+                var deactivatedFloor = dbFloor;
                 deactivatedFloor.IsActive = false;
-                appDb.Entry(deactivatedFloor).CurrentValues.SetValues(deactivatedFloor);
-                appDb.SaveChanges();
+                appDb.Entry(dbFloor).CurrentValues.SetValues(deactivatedFloor);
 
                 // when floor is deactivated - rooms on that floor are deactivated too
                 var numRooms = GetAllRooms(floorId);
-                for (int i = 0; i < numRooms.Count; i++)
+                foreach (var room in numRooms)
                 {
                     // if room is reserved you can deactivate that room
-                    if(numRooms[i].IsReserved == true)
+                    if(room.IsReserved == true)
                     {
                         continue;
                     }
                     else
                     {
-                        numRooms[i].IsActive = false;
-                        appDb.SaveChanges();
+                        var chRoom = room;
+                        chRoom.IsActive = false;
+                        appDb.Entry(room).CurrentValues.SetValues(chRoom);
                     }
                 }
-                return true;
+                appDb.SaveChanges();
+                FloorViewModel f = GetFloor(dbFloor);
+                return f;
             }
-            return false;
+            return null;
         }
 
-        public bool ActivateFloor(int floorId)
+        public FloorViewModel ActivateFloor(int floorId)
         {
-            var activateFloor = GetFloorById(floorId);
-            if (activateFloor != null)
+            var dbFloor = GetFloorById(floorId);
+            if (dbFloor != null)
             {
+                var activateFloor = dbFloor;
                 activateFloor.IsActive = true;
                 appDb.Entry(activateFloor).CurrentValues.SetValues(activateFloor);
-                appDb.SaveChanges();
 
                 // when floor is activated - rooms on that floor are activated too
                 var numRooms = GetAllRooms(floorId);
-                for (int i = 0; i < numRooms.Count; i++)
+                foreach (var room in numRooms)
                 {
-                    numRooms[i].IsActive = true;
-                    appDb.SaveChanges();
+                    var chRoom = room;
+                    chRoom.IsActive = true;
+                    appDb.Entry(room).CurrentValues.SetValues(chRoom);
                 }
-                return true;
+                appDb.SaveChanges();
+                FloorViewModel f = GetFloor(dbFloor);
+                return f;
             }
-            return true;
+            return null;
         }
 
-        public bool UpdateFloor(Floor floor)
+        public FloorViewModel UpdateFloor(Floor floor)
         {
             var dbFloor = GetFloorById(floor.ID);
             if(dbFloor != null && dbFloor.NumberOfRooms <= floor.NumberOfRooms)
             {
                 appDb.Entry(dbFloor).CurrentValues.SetValues(floor);
                 appDb.SaveChanges();
-                return true;
+
+                FloorViewModel f = GetFloor(floor);
+                return f;
             }
-            return false;
+            return null;
         }
+
+        private FloorViewModel FloorToViewModel(Floor fls)
+        {
+            FloorViewModel floor = new FloorViewModel();
+            List<Room> rooms = GetAllRooms().Where(x => x.FloorId == fls.ID).ToList();
+            floor.ID = fls.ID;
+            floor.FloorNo = fls.FloorNo;
+            floor.TotalRooms = fls.NumberOfRooms;
+            floor.IsActive = fls.IsActive;
+            floor.Entered = rooms.Count();
+            floor.ForEnter = fls.NumberOfRooms - rooms.Count();
+            floor.Free = rooms.Where(c => c.IsReserved == false).Count();
+            floor.Reserved = rooms.Where(c => c.IsReserved == true).Count();
+
+            return floor;
+        }
+
 
 
         /// for room
@@ -130,10 +174,21 @@ namespace HotelApp.Repository
         
         public List<Room> AllReservedRooms()
         {
-            var reservedRooms = appDb.Rooms.Where(x => x.IsReserved == false).ToList();
+            var reservedRooms = appDb.Rooms.Where(x => x.IsReserved == true).ToList();
             return reservedRooms;
         }
 
+        public List<Room> AllActiveRooms()
+        {
+            var activeRooms = appDb.Rooms.Where(x => x.IsActive == true && x.IsReserved == false).ToList();
+            return activeRooms;
+        }
+
+        public List<Room> AllInactiveRooms()
+        {
+            var inactiveRooms = appDb.Rooms.Where(x => x.IsActive == false).ToList();
+            return inactiveRooms;
+        }
 
         public Room GetRoomById(int roomId)
         {
@@ -240,7 +295,9 @@ namespace HotelApp.Repository
         // for guests
         public List<ApplicationUser> GetAllGuests()
         {
-            var guests = appDb.Users.ToList();
+            var role = appDb.Roles.FirstOrDefault(x => x.Name == "Admin");
+            var t = role.Id;
+            var guests = appDb.Users.ToList().Where(x => x.Roles.First().RoleId != t).ToList();
             return guests;
         }
 
