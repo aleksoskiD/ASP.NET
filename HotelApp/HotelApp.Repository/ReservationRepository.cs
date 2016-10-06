@@ -34,11 +34,19 @@ namespace HotelApp.Repository
 
         public List<ReservationViewModel> GetReservationsForGuest(string id)
         {
-
             List<ReservationViewModel> formatedReservations = new List<ReservationViewModel>();
             var reservations = appDb.Reservations.Where(x => x.GuestId == id).OrderByDescending(x=>x.DateCreated).ToList();
 
             formatedReservations = reservations.ClientReservations();
+            return formatedReservations;
+        }
+
+        public List<ReservationViewModel> GetReservationsForGuestByDate(string id, DateTime date)
+        {
+            List<ReservationViewModel> formatedReservations = new List<ReservationViewModel>();
+            var reservations = appDb.Reservations.Where(x => x.GuestId == id).OrderByDescending(x => x.DateCreated).ToList();
+            var r = reservations.Where(x => x.StartDate > date).ToList();
+            formatedReservations = r.ClientReservations();
             return formatedReservations;
         }
 

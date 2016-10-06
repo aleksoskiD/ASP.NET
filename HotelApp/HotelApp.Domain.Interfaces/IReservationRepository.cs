@@ -14,6 +14,7 @@ namespace HotelApp.Domain.Interfaces
         // for reservations
         List<ReservationViewModel> GetAllReservations();
         List<ReservationViewModel> GetReservationsForGuest(string id);
+        List<ReservationViewModel> GetReservationsForGuestByDate(string id, DateTime date);
         Reservation GetReservationById(int id);
         bool CreateReservation(Reservation reservation);
         bool UpdateReservation(Reservation reservation);

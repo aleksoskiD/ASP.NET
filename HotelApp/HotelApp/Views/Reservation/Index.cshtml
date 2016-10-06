@@ -23,18 +23,19 @@
             <li>@Html.ActionLink("Cancelled", "Index", "Reservation", new { id = ViewContext.RouteData.Values["id"], sort = "cancelled" }, null)</li>
         </ul>
     </div>
+
     @*za filtriranje po datum*@
-    <form class="form-inline" style="float:right" method="get" action="~/Reservation/Index">
-        <div class="col-md-4 form-group">
+    @using (Html.BeginForm("Index", "Reservation", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Get, new { id = "searchForm"}))
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-6 form-group">
             <input type="text" id="startDateSearch" class="form-control" name="startDate" placeholder="start date">
         </div>
-        <div class="col-md-4 form-group">
-            <input type="text" id="endDateSearch" class="form-control" name="endDate" placeholder="end date"/>
-        </div>
         <div class="col-md-2 form-group" style="display:inline">
-            <input type="submit" value="Search" class="btn btn-sm btn-default" id="searchDate"/>
+            <input type="submit" value="Search" class="btn btn-sm btn-default" id="searchDate" />
         </div>
-    </form>
+    }
+
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped" style="margin-top:10px">
             <tr>
@@ -116,10 +117,10 @@
 
         $(function () {
             $("#startDateSearch").datepicker({
-                dateFormat: "dd.mm.yy"
+                dateFormat: "mm.dd.yy"
             });
             $("#endDateSearch").datepicker({
-                dateFormat: "dd.mm.yy"
+                dateFormat: "mm.dd.yy"
             });
         });
     </script>
